@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyFeedCollectionViewCell" id="gTV-IL-0wX" customClass="MyFeedCollectionViewCell" customModule="LogInFB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageHolder" translatesAutoresizingMaskIntoConstraints="NO" id="beI-cI-IOy">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="160"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="160" id="NL1-jb-mJZ"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="2c1-qJ-6Wb">
+                        <rect key="frame" x="0.0" y="168" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="ABl-Sj-eeY"/>
+                            <constraint firstAttribute="height" constant="32" id="mFN-Jk-WvX"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IS8-LT-wi6">
+                        <rect key="frame" x="40" y="169" width="277" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-F7-I0o">
+                                <rect key="frame" x="0.0" y="0.0" width="277" height="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <color key="textColor" name="ThirdGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQR-LB-uZn">
+                                <rect key="frame" x="0.0" y="15" width="277" height="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                <color key="textColor" name="ThirdGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aGN-F7-I0o" firstAttribute="top" secondItem="IS8-LT-wi6" secondAttribute="top" id="19B-vJ-gnh"/>
+                            <constraint firstAttribute="width" constant="277" id="4qL-qr-YHC"/>
+                            <constraint firstItem="aGN-F7-I0o" firstAttribute="leading" secondItem="IS8-LT-wi6" secondAttribute="leading" id="8WE-8m-IEV"/>
+                            <constraint firstAttribute="bottom" secondItem="MQR-LB-uZn" secondAttribute="bottom" id="LEH-W8-9bv"/>
+                            <constraint firstItem="MQR-LB-uZn" firstAttribute="leading" secondItem="IS8-LT-wi6" secondAttribute="leading" id="TVr-IR-0uZ"/>
+                            <constraint firstAttribute="height" constant="30" id="UjP-6h-JSN"/>
+                            <constraint firstItem="MQR-LB-uZn" firstAttribute="top" secondItem="aGN-F7-I0o" secondAttribute="bottom" id="hFL-G0-P6V"/>
+                        </constraints>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ms-u1-W2s">
+                        <rect key="frame" x="317" y="175" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="5lg-oa-Cgu"/>
+                            <constraint firstAttribute="width" constant="20" id="sf3-JB-5Fk"/>
+                        </constraints>
+                        <state key="normal" image="Like"/>
+                        <state key="selected" image="Like-pressed"/>
+                        <connections>
+                            <action selector="onLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="1EV-gB-qrv"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="9Ms-u1-W2s" firstAttribute="leading" secondItem="IS8-LT-wi6" secondAttribute="trailing" id="0ci-hg-BHU"/>
+                <constraint firstItem="2c1-qJ-6Wb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3bW-t8-7ZG"/>
+                <constraint firstItem="beI-cI-IOy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8oQ-Kg-qsA"/>
+                <constraint firstItem="IS8-LT-wi6" firstAttribute="top" secondItem="beI-cI-IOy" secondAttribute="bottom" constant="9" id="BwS-JV-3jo"/>
+                <constraint firstItem="beI-cI-IOy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Jg1-V6-rJb"/>
+                <constraint firstAttribute="bottom" secondItem="beI-cI-IOy" secondAttribute="bottom" constant="40" id="OLD-Q2-QeS"/>
+                <constraint firstAttribute="bottom" secondItem="IS8-LT-wi6" secondAttribute="bottom" constant="1" id="RiW-aT-X1L"/>
+                <constraint firstAttribute="bottom" secondItem="2c1-qJ-6Wb" secondAttribute="bottom" id="Zb5-S5-v9c"/>
+                <constraint firstAttribute="trailing" secondItem="9Ms-u1-W2s" secondAttribute="trailing" constant="6" id="b6E-fR-qo1"/>
+                <constraint firstItem="9Ms-u1-W2s" firstAttribute="top" secondItem="beI-cI-IOy" secondAttribute="bottom" constant="15" id="jb1-9M-hO9"/>
+                <constraint firstItem="2c1-qJ-6Wb" firstAttribute="top" secondItem="beI-cI-IOy" secondAttribute="bottom" constant="8" id="pb4-8E-PlC"/>
+                <constraint firstAttribute="trailing" secondItem="beI-cI-IOy" secondAttribute="trailing" id="u5q-tP-fwg"/>
+                <constraint firstItem="IS8-LT-wi6" firstAttribute="leading" secondItem="2c1-qJ-6Wb" secondAttribute="trailing" constant="8" id="ySH-zM-FsU"/>
+            </constraints>
+            <size key="customSize" width="403" height="205"/>
+            <connections>
+                <outlet property="btnLike" destination="9Ms-u1-W2s" id="Z7F-Wx-aES"/>
+                <outlet property="imageHolder" destination="beI-cI-IOy" id="mRR-DV-OQ1"/>
+                <outlet property="lblTime" destination="MQR-LB-uZn" id="nk7-2r-0qZ"/>
+                <outlet property="lblUserName" destination="aGN-F7-I0o" id="3GA-BH-cyB"/>
+                <outlet property="userImage" destination="2c1-qJ-6Wb" id="uGj-T5-azl"/>
+            </connections>
+            <point key="canvasLocation" x="351.44927536231887" y="153.34821428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Like" width="21" height="19"/>
+        <image name="Like-pressed" width="21" height="19"/>
+        <image name="imageHolder" width="171.5" height="171.5"/>
+        <image name="userPlaceholder" width="64" height="64"/>
+        <namedColor name="ThirdGray">
+            <color red="0.28999999165534973" green="0.28999999165534973" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
