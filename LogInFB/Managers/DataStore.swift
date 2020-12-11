@@ -136,8 +136,13 @@ class DataStore {
         }
     }
     func fetchFeedItems(completion: @escaping FeedItemsCompletion) {
-    let feedRef = database.collection("feed")
-        feedRef.getDocuments { (snapshot, error) in
+        let feedRef = database.collection("feed")
+//        collection reference is a subclass of Query, so it can be casted to Query
+        var feedQuery: Query = feedRef
+        if let localUser = DataStore.shared.localUser, let blockedUsers = localUser.blockedUsersID, blockedUsers.count > 0 {
+            feedQuery = feedRef.whereField("creatorId", notIn: blockedUsers)
+        }
+        feedQuery.getDocuments { (snapshot, error) in
             if let error = error {
                 completion(nil, error)
                 return

@@ -21,13 +21,13 @@ struct User: Codable {
     var followers: Int?
     var following: Int?
     var likedMoments: [String]? = [String]()
-    
+    var blockedUsersID: [String]? = [String]()
     
     init(id: String) {
         self.id = id
     }
     func save() {
-        
+        DataStore.shared.localUser = self
         DataStore.shared.setUserData(user: self) { (_, _) in }
     }
 }

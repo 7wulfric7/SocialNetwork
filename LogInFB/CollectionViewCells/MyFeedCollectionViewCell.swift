@@ -17,8 +17,6 @@ class MyFeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnLike: UIButton!
     
     var feedItem: Feed?
-    var likedMomentSelected = false
-
     
     override func awakeFromNib() {
         super.awakeFromNib()

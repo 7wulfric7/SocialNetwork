@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         fetchFeedItems()
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh(_:)), name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
     }
     
     func setupCollectionView() {
@@ -43,6 +44,13 @@ class HomeViewController: UIViewController {
 //    @objc private func didPullToRefresh() {
 //        fetchFeedItems()
 //    }
+    
+    @objc func reloadFeedNotification() {
+        guard let localUser = DataStore.shared.localUser,
+        let blockedUsers = localUser.blockedUsersID else { return }
+        feedItems = feedItems.filter({ !blockedUsers.contains($0.creatorId!) })
+        collectionView.reloadData()
+    }
     
     @objc func refresh(_ refreshControl: UIRefreshControl) {
         fetchFeedItems(isRefresh: true)
@@ -87,6 +95,7 @@ class HomeViewController: UIViewController {
             guard let twoDate = feedTwo.createdAt else { return false }
             return oneDate > twoDate
         }
+        reloadFeedNotification()
         collectionView.reloadData()
     }
     
