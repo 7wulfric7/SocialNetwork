@@ -258,8 +258,7 @@ extension ProfileViewController: UITableViewDataSource {
             }
             statsCell.lblMomentsNumbers.text = "\(user.moments ?? 0)"
             statsCell.lblFollowersNumbers.text = "\(user.followers ?? 0)"
-            statsCell.lblFollowingNumbers.text = "\(user.following ?? 0)"
-            
+            statsCell.lblFollowingNumbers.text = "\(user.followingUsersID?.count ?? 0)"
             statsCell.selectionStyle = .none
             return statsCell
         case .myMoments:
