@@ -104,7 +104,6 @@ class WelcomeViewController: UIViewController {
                     self.continueToHomescreen()
                 }
             }
-            
         }
     
     func continueToHomescreen() {

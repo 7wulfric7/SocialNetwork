@@ -73,7 +73,6 @@ extension SearchUsersViewController: UITableViewDataSource, UITableViewDelegate 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
-        cell.blockingDelegate = self
         let user = users[indexPath.row]
         cell.blockingDelegate = self
         cell.setData(user: user)

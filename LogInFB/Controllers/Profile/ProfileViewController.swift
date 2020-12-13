@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController {
     
     private let tableData: [ProfileViewTableData] = [.basicInfo, .aboutMe, .stats]
     private var pickedImage: UIImage?
+    
     var user: User?
     private var galleryImages = [UIImage]()
     
@@ -56,7 +57,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        title = "You"
+//        title = "You"
         if user == nil {
             setupNewPostButton()
         }
@@ -137,6 +138,21 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: BasicinfoCellDelegate {
+    func didFollowUsers(user: User?, isFollowed: Bool) {
+        guard var localUser = DataStore.shared.localUser, let userId = user?.id else {return}
+        if localUser.followingUsersID == nil {
+            localUser.followingUsersID = [String]()
+        }
+        if isFollowed {
+            localUser.followingUsersID?.append(userId)
+        } else {
+            localUser.followingUsersID?.removeAll(where: {$0 == user?.id})
+        }
+        localUser.save()
+        tableView.reloadData()
+        NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
+    }
+    
     func didClickOnEditImage() {
         openEditImageSheet()
     }
@@ -192,6 +208,8 @@ extension ProfileViewController: UITableViewDataSource {
         }
         let data = tableData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: data.cellIdentifier)
+        
+      
         // IF method as follows:
 //        if self.user != nil {
 //            return getCellFor(data: data, user:self.user!, cell: cell)
@@ -207,6 +225,15 @@ extension ProfileViewController: UITableViewDataSource {
             guard let basicCell = cell as? BasicInfoTableViewCell else {
                 return UITableViewCell()
             }
+            DataStore.shared.getUser(uid: user.id!) { (user, error) in
+                if let error = error {
+               self.showErrorWith(title: "Error", msg: error.localizedDescription)
+               return
+           }
+                if let user = user {
+                    self.title = user.fullName! + "'s Profile"
+                }
+            }
             basicCell.profileImage.image = pickedImage
             basicCell.user = user
             basicCell.lblName.text = user.fullName
@@ -216,6 +243,7 @@ extension ProfileViewController: UITableViewDataSource {
             }
             basicCell.selectionStyle = .none
             basicCell.delegate = self
+            basicCell.setData(user: user)
             return basicCell
         case .aboutMe:
             guard let aboutCell = cell as? AboutMeTableViewCell else {

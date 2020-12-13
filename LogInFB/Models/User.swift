@@ -22,6 +22,7 @@ struct User: Codable {
     var following: Int?
     var likedMoments: [String]? = [String]()
     var blockedUsersID: [String]? = [String]()
+    var followingUsersID: [String]? = [String]()
     
     init(id: String) {
         self.id = id

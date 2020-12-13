@@ -41,18 +41,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBH-jE-E8d">
-                        <rect key="frame" x="259" y="7" width="100" height="34"/>
+                        <rect key="frame" x="279" y="9" width="80" height="30"/>
                         <color key="backgroundColor" name="MainPink"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="Iyt-wQ-ODF"/>
+                            <constraint firstAttribute="width" constant="80" id="Iyt-wQ-ODF"/>
                         </constraints>
-                        <color key="tintColor" name="MainPink"/>
-                        <state key="normal" title="Block">
-                            <color key="titleColor" name="SecondaryWhite"/>
-                        </state>
-                        <state key="selected" title="Unblock">
-                            <color key="titleColor" name="SecondaryWhite"/>
-                        </state>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <state key="normal" title="Block"/>
+                        <state key="selected" title="Unblock"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="btnBlock:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pGZ-2A-xZ4"/>
                         </connections>
@@ -79,9 +80,6 @@
     <resources>
         <namedColor name="MainPink">
             <color red="1" green="0.38400000333786011" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="SecondaryWhite">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

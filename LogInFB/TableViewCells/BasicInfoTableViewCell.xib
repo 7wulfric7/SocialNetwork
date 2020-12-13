@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,39 +32,66 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="82u-UJ-YH9">
-                        <rect key="frame" x="89" y="24" width="266" height="42"/>
+                        <rect key="frame" x="89" y="24" width="186" height="42"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6y-3z-NOw">
-                                <rect key="frame" x="0.0" y="0.0" width="266" height="21"/>
+                                <rect key="frame" x="0.0" y="0.0" width="186" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-aT-jjN">
-                                <rect key="frame" x="0.0" y="21" width="266" height="21"/>
+                                <rect key="frame" x="0.0" y="21" width="186" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eje-oi-Mtx">
+                        <rect key="frame" x="279" y="26" width="80" height="24"/>
+                        <color key="backgroundColor" name="MainPink"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="DUf-r2-yCv"/>
+                            <constraint firstAttribute="height" constant="24" id="sAp-lJ-Kwc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="FOLLOW">
+                            <color key="titleColor" name="SecondaryWhite"/>
+                        </state>
+                        <state key="selected" title="UNFOLLOW"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="onFollow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RfS-Jj-zWR"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="82u-UJ-YH9" firstAttribute="bottom" secondItem="c7P-5b-2eB" secondAttribute="bottom" constant="-7" id="41t-P4-5Jt"/>
                     <constraint firstItem="82u-UJ-YH9" firstAttribute="top" secondItem="c7P-5b-2eB" secondAttribute="top" constant="7" id="7di-f7-UNh"/>
+                    <constraint firstItem="eje-oi-Mtx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="Bvf-l0-SVM"/>
+                    <constraint firstItem="eje-oi-Mtx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GxY-ZQ-tXo"/>
                     <constraint firstItem="6qm-MS-dxH" firstAttribute="bottom" secondItem="c7P-5b-2eB" secondAttribute="bottom" id="Hch-Lh-Xem"/>
                     <constraint firstItem="6qm-MS-dxH" firstAttribute="top" secondItem="c7P-5b-2eB" secondAttribute="top" id="d5F-bw-aFp"/>
                     <constraint firstItem="6qm-MS-dxH" firstAttribute="trailing" secondItem="c7P-5b-2eB" secondAttribute="trailing" id="ddg-2y-CD8"/>
-                    <constraint firstAttribute="trailing" secondItem="82u-UJ-YH9" secondAttribute="trailing" constant="20" id="goI-Uo-vB2"/>
+                    <constraint firstAttribute="trailing" secondItem="82u-UJ-YH9" secondAttribute="trailing" constant="100" id="goI-Uo-vB2"/>
                     <constraint firstAttribute="bottom" secondItem="c7P-5b-2eB" secondAttribute="bottom" constant="17" id="hff-UU-ckj"/>
+                    <constraint firstAttribute="trailing" secondItem="eje-oi-Mtx" secondAttribute="trailing" constant="16" id="kfb-SD-QnP"/>
                     <constraint firstItem="c7P-5b-2eB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="m5u-Ws-TYQ"/>
                     <constraint firstItem="6qm-MS-dxH" firstAttribute="leading" secondItem="c7P-5b-2eB" secondAttribute="leading" id="mx8-Av-Sa3"/>
+                    <constraint firstAttribute="bottom" secondItem="eje-oi-Mtx" secondAttribute="bottom" constant="39" id="sI9-oi-Zdw"/>
                     <constraint firstItem="82u-UJ-YH9" firstAttribute="leading" secondItem="c7P-5b-2eB" secondAttribute="trailing" constant="16" id="vTT-Ki-QEp"/>
                     <constraint firstItem="c7P-5b-2eB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="zSr-XQ-dzf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnFollow" destination="eje-oi-Mtx" id="7uY-tf-Lw0"/>
                 <outlet property="lblName" destination="c6y-3z-NOw" id="2da-ew-cbM"/>
                 <outlet property="lblOtherInfo" destination="JqW-aT-jjN" id="aNQ-I6-vi4"/>
                 <outlet property="profileImage" destination="c7P-5b-2eB" id="FUV-KZ-d0j"/>
@@ -73,5 +101,11 @@
     </objects>
     <resources>
         <image name="userPlaceholder" width="64" height="64"/>
+        <namedColor name="MainPink">
+            <color red="1" green="0.38400000333786011" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

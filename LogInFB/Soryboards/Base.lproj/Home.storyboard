@@ -397,7 +397,7 @@
             <objects>
                 <viewController storyboardIdentifier="OtherUsersViewController" id="gZK-De-xqK" customClass="OtherUsersViewController" customModule="LogInFB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mEX-pO-BfW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iJb-Pj-9Ez">
@@ -438,9 +438,9 @@
                         <viewLayoutGuide key="safeArea" id="qca-R6-Oho"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6gt-Qy-azw" firstAttribute="top" secondItem="qca-R6-Oho" secondAttribute="top" id="HB4-A1-0ai"/>
                             <constraint firstItem="6gt-Qy-azw" firstAttribute="leading" secondItem="qca-R6-Oho" secondAttribute="leading" id="Pro-Dc-iVT"/>
                             <constraint firstItem="qca-R6-Oho" firstAttribute="trailing" secondItem="6gt-Qy-azw" secondAttribute="trailing" id="RkA-Rt-15m"/>
-                            <constraint firstItem="6gt-Qy-azw" firstAttribute="top" secondItem="qca-R6-Oho" secondAttribute="top" id="SDr-nW-duj"/>
                             <constraint firstItem="qca-R6-Oho" firstAttribute="bottom" secondItem="6gt-Qy-azw" secondAttribute="bottom" id="ub5-Fu-REl"/>
                         </constraints>
                     </view>
