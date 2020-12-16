@@ -14,10 +14,6 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
-	<key>NSCameraUsageDescription</key>
-	<string>It needs to use the camera for setting the profile picture via camera</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>It needs to use the photo library for setting the profile picture</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
@@ -57,6 +53,10 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>It needs to use the camera for setting the profile picture via camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>It needs to use the photo library for setting the profile picture</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

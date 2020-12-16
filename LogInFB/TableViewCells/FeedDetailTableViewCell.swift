@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FeedDetailTableViewCell: UITableViewCell {
 
@@ -38,4 +39,14 @@ class FeedDetailTableViewCell: UITableViewCell {
         
     }
     
+    func setData(moment: Feed) {
+        guard let creatorId = moment.creatorId else { return }
+        DataStore.shared.getUser(uid: creatorId) { (user, error) in
+            guard let user = user else { return }
+            self.lblUserName.text = user.fullName
+            if let imageUrl = user.imageUrl {
+            self.userImage.kf.setImage(with: URL(string: imageUrl))
+            }
+        }
+    }
 }

@@ -15,5 +15,6 @@ pod 'SVProgressHUD'
 pod 'CodableFirebase'
 pod 'Kingfisher'
 pod 'SwiftPhotoGallery'
+pod 'InputBarAccessoryView'
 
 end

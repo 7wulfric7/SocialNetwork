@@ -41,18 +41,15 @@ class BasicInfoTableViewCell: UITableViewCell {
         guard let localUser = DataStore.shared.localUser, let userId = user.id, let followedUsers = localUser.followingUsersID else {return}
         if followedUsers.contains(userId) {
             btnFollow.isSelected = true
-            btnFollow.layer.backgroundColor = UIColor(named: "ThirdGray")?.cgColor
+            btnFollow.backgroundColor = UIColor(named: "ThirdGray")
         } else {
             btnFollow.isSelected = false
-            btnFollow.layer.backgroundColor = UIColor(named: "MainPink")?.cgColor
+            btnFollow.backgroundColor = UIColor(named: "MainPink")
         }
-//        guard let myID = localUser.id else {return}
-//        DataStore.shared.getUser(uid: myID) { (user, error) in
-//            if let user = user {
-//                self.lblName.text = user.fullName
-//                self.btnFollow.isHidden = true
-//            }
-//        }
+        guard let myID = user.id, let user = DataStore.shared.localUser?.id else {return}
+        if myID == user {
+                self.btnFollow.isHidden = true
+        }
     }
     
     @IBAction func oneditImage(_ sender: UIButton) {

@@ -48,7 +48,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eje-oi-Mtx">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eje-oi-Mtx">
                         <rect key="frame" x="279" y="26" width="80" height="24"/>
                         <color key="backgroundColor" name="MainPink"/>
                         <constraints>
@@ -96,7 +96,7 @@
                 <outlet property="lblOtherInfo" destination="JqW-aT-jjN" id="aNQ-I6-vi4"/>
                 <outlet property="profileImage" destination="c7P-5b-2eB" id="FUV-KZ-d0j"/>
             </connections>
-            <point key="canvasLocation" x="131.15942028985509" y="122.87946428571428"/>
+            <point key="canvasLocation" x="595" y="-114"/>
         </tableViewCell>
     </objects>
     <resources>

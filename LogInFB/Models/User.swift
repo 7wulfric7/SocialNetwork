@@ -7,6 +7,7 @@
 
 import Foundation
 
+typealias UserSaveCompletion = (_ success: Bool,_ error: Error?)-> Void
 
 struct User: Codable {
     var email: String?
@@ -27,9 +28,11 @@ struct User: Codable {
     init(id: String) {
         self.id = id
     }
-    func save() {
-        DataStore.shared.localUser = self
-        DataStore.shared.setUserData(user: self) { (_, _) in }
+    func save(completion: UserSaveCompletion?) {
+//        DataStore.shared.localUser = self
+        DataStore.shared.setUserData(user: self) { (success, error) in
+            completion?(success, error)
+        }
     }
 }
 

@@ -14,6 +14,8 @@ class FeedDetailLikeShareTableViewCell: UITableViewCell {
     @IBOutlet weak var lblLikeCount: UILabel!
     @IBOutlet weak var lblShareCount: UILabel!
     
+    var feedItem: Feed?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,9 +26,10 @@ class FeedDetailLikeShareTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
     
     @IBAction func onLike(_ sender: UIButton) {
+        
         btnLike.isSelected = !btnLike.isSelected
     }
-    
 }

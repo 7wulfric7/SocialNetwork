@@ -37,6 +37,8 @@
 		226BC0CF257562CE001D11C2 /* CreateMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BC0CE257562CE001D11C2 /* CreateMomentViewController.swift */; };
 		226BC0D225757652001D11C2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BC0D125757652001D11C2 /* Feed.swift */; };
 		228154262563005100131BEA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228154252563005100131BEA /* ProfileViewController.swift */; };
+		229903802587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */; };
+		229903812587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */; };
 		229C0DB0255C594400183081 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C0DAF255C594400183081 /* DataStore.swift */; };
 		229C0DB4255C5A9700183081 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C0DB3255C5A9700183081 /* User.swift */; };
 		22B935B82563043900EC69E8 /* BasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B935B62563043900EC69E8 /* BasicInfoTableViewCell.swift */; };
@@ -93,6 +95,8 @@
 		226BC0CE257562CE001D11C2 /* CreateMomentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMomentViewController.swift; sourceTree = "<group>"; };
 		226BC0D125757652001D11C2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		228154252563005100131BEA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailCommentsTableViewCell.swift; sourceTree = "<group>"; };
+		2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedDetailCommentsTableViewCell.xib; sourceTree = "<group>"; };
 		229C0DAF255C594400183081 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		229C0DB3255C5A9700183081 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22B935B62563043900EC69E8 /* BasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				2241139B2577CAF5005F8910 /* FeedDetailTextTableViewCell.xib */,
 				2241139F2577CDE4005F8910 /* FeedDetailLikeShareTableViewCell.swift */,
 				224113A02577CDE4005F8910 /* FeedDetailLikeShareTableViewCell.xib */,
+				2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */,
+				2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 				22FD1B7A25507419007E2A81 /* Assets.xcassets in Resources */,
 				220A007725652E2F0016E49E /* AboutMeTableViewCell.xib in Resources */,
 				2229422725703E2A00CB1791 /* OtherAboutTableViewCell.xib in Resources */,
+				229903812587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib in Resources */,
 				224113932577C2B2005F8910 /* FeedDetailTableViewCell.xib in Resources */,
 				22C642C8256ECAF40001ADBF /* UserTableViewCell.xib in Resources */,
 				2241138E2577A7D4005F8910 /* MyFeedCollectionViewCell.xib in Resources */,
@@ -453,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229903802587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift in Sources */,
 				22B935B82563043900EC69E8 /* BasicInfoTableViewCell.swift in Sources */,
 				2241139C2577CAF5005F8910 /* FeedDetailTextTableViewCell.swift in Sources */,
 				229C0DB0255C594400183081 /* DataStore.swift in Sources */,
@@ -643,6 +651,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UUZZ94GNC;
 				INFOPLIST_FILE = LogInFB/Info.plist;
@@ -651,8 +660,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeacademy.socialnetwork;
+				PRODUCT_BUNDLE_IDENTIFIER = com.denizadil.socialnetwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -664,6 +674,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4UUZZ94GNC;
 				INFOPLIST_FILE = LogInFB/Info.plist;
@@ -672,8 +683,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeacademy.socialnetwork;
+				PRODUCT_BUNDLE_IDENTIFIER = com.denizadil.socialnetwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

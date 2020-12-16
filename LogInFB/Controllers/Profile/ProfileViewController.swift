@@ -148,9 +148,10 @@ extension ProfileViewController: BasicinfoCellDelegate {
         } else {
             localUser.followingUsersID?.removeAll(where: {$0 == user?.id})
         }
-        localUser.save()
-        tableView.reloadData()
+        localUser.save{ (_, _) in
+            self.tableView.reloadData()
         NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
+        }
     }
     
     func didClickOnEditImage() {
@@ -230,7 +231,11 @@ extension ProfileViewController: UITableViewDataSource {
                self.showErrorWith(title: "Error", msg: error.localizedDescription)
                return
            }
-                if let user = user {
+                let myID = user?.id
+                let myself = DataStore.shared.localUser?.id
+                if myID == myself {
+                    self.title = "You"
+                } else if let user = user {
                     self.title = user.fullName! + "'s Profile"
                 }
             }

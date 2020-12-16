@@ -102,7 +102,7 @@ class MyFeedCollectionViewCell: UICollectionViewCell {
         }
         btnLike.isSelected = !btnLike.isSelected
             //save user to firebase
-        localUser?.save()
+        localUser?.save(completion: nil)
     }
 }
 

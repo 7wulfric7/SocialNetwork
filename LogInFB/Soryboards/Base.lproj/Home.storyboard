@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -431,21 +431,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6gt-Qy-azw">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="pAj-6a-Zay">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qca-R6-Oho"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6gt-Qy-azw" firstAttribute="top" secondItem="qca-R6-Oho" secondAttribute="top" id="HB4-A1-0ai"/>
+                            <constraint firstItem="pAj-6a-Zay" firstAttribute="leading" secondItem="qca-R6-Oho" secondAttribute="leading" id="GmH-YK-MuW"/>
+                            <constraint firstItem="pAj-6a-Zay" firstAttribute="trailing" secondItem="qca-R6-Oho" secondAttribute="trailing" id="KEj-cg-O23"/>
                             <constraint firstItem="6gt-Qy-azw" firstAttribute="leading" secondItem="qca-R6-Oho" secondAttribute="leading" id="Pro-Dc-iVT"/>
                             <constraint firstItem="qca-R6-Oho" firstAttribute="trailing" secondItem="6gt-Qy-azw" secondAttribute="trailing" id="RkA-Rt-15m"/>
+                            <constraint firstItem="pAj-6a-Zay" firstAttribute="top" secondItem="qca-R6-Oho" secondAttribute="top" id="ZMS-co-dTB"/>
+                            <constraint firstItem="6gt-Qy-azw" firstAttribute="top" secondItem="pAj-6a-Zay" secondAttribute="bottom" id="jeS-3E-Vwd"/>
                             <constraint firstItem="qca-R6-Oho" firstAttribute="bottom" secondItem="6gt-Qy-azw" secondAttribute="bottom" id="ub5-Fu-REl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u8e-mM-fjk"/>
                     <connections>
+                        <outlet property="searchBar" destination="pAj-6a-Zay" id="6ro-gd-ocl"/>
                         <outlet property="tableView" destination="6gt-Qy-azw" id="Vgx-SH-MCY"/>
                         <segue destination="gZK-De-xqK" kind="presentation" identifier="otherUsersSegue" id="cjj-RT-BNE"/>
                     </connections>

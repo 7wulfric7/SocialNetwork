@@ -44,10 +44,10 @@ class UserTableViewCell: UITableViewCell {
         guard let localUser = DataStore.shared.localUser, let userId = user.id, let blockedUsers = localUser.blockedUsersID else {return}
         if blockedUsers.contains(userId) {
             btnBlock.isSelected = true
-            btnBlock.layer.backgroundColor = UIColor(named: "ThirdGray")?.cgColor
+            btnBlock.backgroundColor = UIColor(named: "ThirdGray")
         } else {
             btnBlock.isSelected = false
-            btnBlock.layer.backgroundColor = UIColor(named: "MainPink")?.cgColor
+            btnBlock.backgroundColor = UIColor(named: "MainPink")
         }
 //        za da se skrati if-ot može vaka:
 //        btnBlock.isSelected = blockedUsers.contains(userId)

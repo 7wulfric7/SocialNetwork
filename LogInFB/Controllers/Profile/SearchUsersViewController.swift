@@ -13,13 +13,17 @@ import Kingfisher
 class SearchUsersViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private var users = [User]()
+    private var filteredUsers = [User]()
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = "Search Users"
+        searchBar.delegate = self
         fetchUsers()
         setupTableView()
     }
@@ -69,7 +73,6 @@ class SearchUsersViewController: UIViewController {
 extension SearchUsersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection sections: Int) -> Int {
         return users.count
-    
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
@@ -82,7 +85,6 @@ extension SearchUsersViewController: UITableViewDataSource, UITableViewDelegate 
         tableView.deselectRow(at: indexPath, animated: true)
         let user = users[indexPath.row]
         openProfileFor(user: user)
-        
     }
 }
 extension SearchUsersViewController: BlockUsersCellDelegate {
@@ -96,10 +98,27 @@ extension SearchUsersViewController: BlockUsersCellDelegate {
         } else {
             localUser.blockedUsersID?.removeAll(where: {$0 == user.id})
         }
-        localUser.save()
-        tableView.reloadData()
+        localUser.save { (_, _) in
+            self.tableView.reloadData()
+            NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
+        }
 //        let notification = NotificationCenter(name: Notification.Name("ReloadFeedAfterUserAction"))
-        NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
     }
 }
-
+extension SearchUsersViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            fetchUsers()
+            filteredUsers.removeAll()
+            filteredUsers.append(contentsOf: users)
+            tableView.reloadData()
+            return
+        }
+        let text = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        users = users.filter({ ($0.fullName!.lowercased().hasPrefix(text.lowercased())) })
+        tableView.reloadData()
+    }
+}
