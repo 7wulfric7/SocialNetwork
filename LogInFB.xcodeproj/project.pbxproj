@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,8 @@
 		229C0DB4255C5A9700183081 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C0DB3255C5A9700183081 /* User.swift */; };
 		22B935B82563043900EC69E8 /* BasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B935B62563043900EC69E8 /* BasicInfoTableViewCell.swift */; };
 		22B935B92563043900EC69E8 /* BasicInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B935B72563043900EC69E8 /* BasicInfoTableViewCell.xib */; };
+		22BF2F46258A7999002915E4 /* InputBarAccessoryView in Frameworks */ = {isa = PBXBuildFile; productRef = 22BF2F45258A7999002915E4 /* InputBarAccessoryView */; };
+		22BF2F49258A8B51002915E4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF2F48258A8B51002915E4 /* Comment.swift */; };
 		22BF4DF3255C8E5A00F4E55A /* SetUpProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF4DF2255C8E5A00F4E55A /* SetUpProfileViewController.swift */; };
 		22C63192257979F000174970 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C63191257979F000174970 /* FeedDetailViewController.swift */; };
 		22C642C2256ECA360001ADBF /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C642C1256ECA360001ADBF /* SearchUsersViewController.swift */; };
@@ -101,6 +103,7 @@
 		229C0DB3255C5A9700183081 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22B935B62563043900EC69E8 /* BasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoTableViewCell.swift; sourceTree = "<group>"; };
 		22B935B72563043900EC69E8 /* BasicInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicInfoTableViewCell.xib; sourceTree = "<group>"; };
+		22BF2F48258A8B51002915E4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		22BF4DF2255C8E5A00F4E55A /* SetUpProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpProfileViewController.swift; sourceTree = "<group>"; };
 		22C63191257979F000174970 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
 		22C642C1256ECA360001ADBF /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44BB0D442EBCB5BD48914FBF /* Pods_LogInFB.framework in Frameworks */,
+				22BF2F46258A7999002915E4 /* InputBarAccessoryView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +221,7 @@
 			children = (
 				229C0DB3255C5A9700183081 /* User.swift */,
 				226BC0D125757652001D11C2 /* Feed.swift */,
+				22BF2F48258A8B51002915E4 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +354,9 @@
 			dependencies = (
 			);
 			name = LogInFB;
+			packageProductDependencies = (
+				22BF2F45258A7999002915E4 /* InputBarAccessoryView */,
+			);
 			productName = LogInFB;
 			productReference = 22FD1B6D25507418007E2A81 /* LogInFB.app */;
 			productType = "com.apple.product-type.application";
@@ -376,6 +384,9 @@
 				Base,
 			);
 			mainGroup = 22FD1B6425507418007E2A81;
+			packageReferences = (
+				22BF2F44258A7999002915E4 /* XCRemoteSwiftPackageReference "InputBarAccessoryView" */,
+			);
 			productRefGroup = 22FD1B6E25507418007E2A81 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -480,6 +491,7 @@
 				229C0DB4255C5A9700183081 /* User.swift in Sources */,
 				22E79FF12555D25600AE20D7 /* DeviceType.swift in Sources */,
 				22FFC1332559B5CF00FDF3FD /* UIViewController.swift in Sources */,
+				22BF2F49258A8B51002915E4 /* Comment.swift in Sources */,
 				22C63192257979F000174970 /* FeedDetailViewController.swift in Sources */,
 				22C642C2256ECA360001ADBF /* SearchUsersViewController.swift in Sources */,
 				22FFC1302559B4E700FDF3FD /* UIColor.swift in Sources */,
@@ -713,6 +725,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22BF2F44258A7999002915E4 /* XCRemoteSwiftPackageReference "InputBarAccessoryView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nathantannar4/InputBarAccessoryView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22BF2F45258A7999002915E4 /* InputBarAccessoryView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22BF2F44258A7999002915E4 /* XCRemoteSwiftPackageReference "InputBarAccessoryView" */;
+			productName = InputBarAccessoryView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 22FD1B6525507418007E2A81 /* Project object */;
 }

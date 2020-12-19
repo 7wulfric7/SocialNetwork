@@ -18,7 +18,8 @@ class FeedDetailLikeShareTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,7 +27,6 @@ class FeedDetailLikeShareTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
     
     @IBAction func onLike(_ sender: UIButton) {
         

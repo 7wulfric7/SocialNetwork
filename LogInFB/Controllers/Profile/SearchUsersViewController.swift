@@ -102,7 +102,6 @@ extension SearchUsersViewController: BlockUsersCellDelegate {
             self.tableView.reloadData()
             NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
         }
-//        let notification = NotificationCenter(name: Notification.Name("ReloadFeedAfterUserAction"))
     }
 }
 extension SearchUsersViewController: UISearchBarDelegate {

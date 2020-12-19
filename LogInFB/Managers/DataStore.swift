@@ -123,7 +123,7 @@ class DataStore {
             }
         }
     }
-    func cerateFeedItem(item: Feed, completion: @escaping (_ item: Feed?,_ error: Error?) -> Void) {
+    func createFeedItem(item: Feed, completion: @escaping (_ item: Feed?,_ error: Error?) -> Void) {
         var newItem = item
         let feedRef = database.collection("feed").document()
         newItem.id = feedRef.documentID
@@ -157,4 +157,48 @@ class DataStore {
             }
         }
     }
+    func saveComment(comment: Comment, updateBlock: @escaping(_ comment: Comment) -> Void, completion: @escaping (_ comment: Comment?,_ error: Error?) -> Void) {
+        var newComment = comment
+        let commentRef = database.collection("comment").document()
+        newComment.id = commentRef.documentID
+        updateBlock(newComment)
+        do {
+            try commentRef.setData(from: newComment) { error in
+                completion(newComment, error)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+    }
+    func fetchComments(feedId: String, completionBlock: @escaping(_ comments: [Comment]?,_ error: Error?) -> Void) {
+        
+       
+        let commentsRef = database.collection("comment").whereField("momentId", isEqualTo: feedId)
+        
+        commentsRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completionBlock(nil, error)
+                return
+            }
+            if let snapshot = snapshot {
+                do {
+                    var comments = try snapshot.documents.compactMap({ try $0.data(as: Comment.self) })
+                    comments.sort { (feedOne, feedTwo) -> Bool in
+                        guard let oneDate = feedOne.createdAt else { return false }
+                        guard let twoDate = feedTwo.createdAt else { return false }
+                        return oneDate < twoDate
+                    }
+                    completionBlock(comments, nil)
+                   
+                } catch {
+                    print(error.localizedDescription)
+                    completionBlock(nil, error)
+                }
+                
+            }
+        }
+    }
 }
+
+
