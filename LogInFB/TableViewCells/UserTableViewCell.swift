@@ -24,7 +24,7 @@ class UserTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,7 +32,7 @@ class UserTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func setData(user: User) {
         self.user = user
         lblName.text = user.fullName
@@ -44,7 +44,7 @@ class UserTableViewCell: UITableViewCell {
         guard let localUser = DataStore.shared.localUser, let userId = user.id, let blockedUsers = localUser.blockedUsersID else {return}
         if blockedUsers.contains(userId) {
             btnBlock.isSelected = true
-            btnBlock.backgroundColor = UIColor(named: "ThirdGray")
+            btnBlock.backgroundColor = UIColor(named: "MainPink")?.withAlphaComponent(0.2)
         } else {
             btnBlock.isSelected = false
             btnBlock.backgroundColor = UIColor(named: "MainPink")

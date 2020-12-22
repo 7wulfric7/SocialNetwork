@@ -41,7 +41,7 @@ class BasicInfoTableViewCell: UITableViewCell {
         guard let localUser = DataStore.shared.localUser, let userId = user.id, let followedUsers = localUser.followingUsersID else {return}
         if followedUsers.contains(userId) {
             btnFollow.isSelected = true
-            btnFollow.backgroundColor = UIColor(named: "ThirdGray")
+            btnFollow.backgroundColor = UIColor(named: "MainPink")?.withAlphaComponent(0.2)
         } else {
             btnFollow.isSelected = false
             btnFollow.backgroundColor = UIColor(named: "MainPink")

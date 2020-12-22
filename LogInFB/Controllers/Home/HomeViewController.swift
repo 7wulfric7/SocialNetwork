@@ -23,11 +23,18 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        
+        customizeButton(btnPost: btnPost)
         setupCollectionView()
         fetchFeedItems()
         NotificationCenter.default.addObserver(self, selector: #selector(refresh(_:)), name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
     }
-    
+    func customizeButton(btnPost: UIButton) {
+        btnPost.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.50).cgColor
+        btnPost.layer.shadowOpacity = 0.8
+        btnPost.layer.shadowRadius = 2.0
+        btnPost.layer.shadowOffset = CGSize(width: 3.0, height: 5.0)
+    }
     func setupCollectionView() {
         collectionView.register(UINib(nibName: "MyFeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyFeedCollectionViewCell")
         collectionView.dataSource = self

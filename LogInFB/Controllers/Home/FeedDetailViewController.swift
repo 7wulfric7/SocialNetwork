@@ -9,13 +9,34 @@ import UIKit
 import SwiftPhotoGallery
 import Kingfisher
 import InputBarAccessoryView
+import FirebaseFirestore
 
-enum FeedDetailTableData {
+enum FeedDetailTableData: Equatable {
+    static func == (lhs: FeedDetailTableData, rhs: FeedDetailTableData) -> Bool {
+        switch (lhs, rhs) {
+        case (.feedDetail, .feedDetail):
+            return true
+        case (.feedDetailImage, .feedDetailImage):
+            return true
+        case (.feedDetailText, .feedDetailText):
+            return true
+        case (.feedDetailLikeShare, .feedDetailLikeShare):
+            return true
+        case (.feedDetailComments, .feedDetailComments):
+            return true
+        case (.loading, .loading):
+            return true
+        default:
+            return false
+        }
+    }
+    
     case feedDetail
     case feedDetailImage
     case feedDetailText
     case feedDetailLikeShare
     case feedDetailComments(comments: [Comment])
+    case loading
     
     var cellIdentifier: String {
         switch self {
@@ -29,6 +50,8 @@ enum FeedDetailTableData {
             return "feedDetailLikeShareCell"
         case .feedDetailComments:
             return "feedDetailsCommentsCell"
+        case .loading:
+            return "LoadingTableViewCell"
         }
     }
         var cellHeight: CGFloat {
@@ -43,6 +66,8 @@ enum FeedDetailTableData {
                 return 56
             case .feedDetailComments:
                 return 58
+            case .loading:
+                return 0
             }
         }
     }
@@ -54,7 +79,12 @@ class FeedDetailViewController: UIViewController {
     private var inputBar = InputBarAccessoryView()
     private var tableData: [FeedDetailTableData] = [.feedDetail, .feedDetailImage, .feedDetailText, .feedDetailLikeShare]
     private var comments = [Comment]()
+    
     var feed: Feed?
+    
+    private var hasNextPage = true
+    private var pageSize = 5
+    private var lastCommentDocument: DocumentSnapshot?
     
     override var canBecomeFirstResponder: Bool {
         return true
@@ -63,28 +93,34 @@ class FeedDetailViewController: UIViewController {
     override var inputAccessoryView: UIView? {
         return inputBar
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
 //        tableData.append(.feedDetailComments(comments: //fetchedContentOfComments))
         setupInputBar()
         setupSharedButton()
         setupTableView()
         getComments()
     }
+    
     private func getComments() {
         guard let moment = feed, let feedId = moment.id else { return }
-        DataStore.shared.fetchComments(feedId: feedId) { (comments, error) in
+        DataStore.shared.fetchComments(feedId: feedId, pageSize: pageSize, lastDocument: lastCommentDocument) { (comments, error, lastDocument) in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
+            self.tableData.removeAll(where: { $0 == .loading || $0 == .feedDetailComments(comments: [])})
             if let comments = comments {
+                self.lastCommentDocument = lastDocument
                 self.comments.append(contentsOf: comments)
-                self.tableData.append(.feedDetailComments(comments: comments))
-//                self.tableView.reloadData()
-                self.tableView.insertSections(IndexSet(integer: self.tableData.count - 1), with: .automatic)
+                self.tableData.append(.feedDetailComments(comments: self.comments))
+                if comments.count == self.pageSize {
+                    self.tableData.append(.loading)
+                }
+                self.tableView.reloadData()
+//                self.tableView.insertSections(IndexSet(integer: self.tableData.count - 1), with: .automatic)
             }
         }
     }
@@ -146,6 +182,7 @@ class FeedDetailViewController: UIViewController {
     }
     
     func setupTableView() {
+        tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: "LoadingTableViewCell")
         tableView.register(UINib(nibName: "FeedDetailTableViewCell", bundle: nil), forCellReuseIdentifier: FeedDetailTableData.feedDetail.cellIdentifier)
         tableView.register(UINib(nibName: "FeedDetailImageTableViewCell", bundle: nil), forCellReuseIdentifier: FeedDetailTableData.feedDetailImage.cellIdentifier)
         tableView.register(UINib(nibName: "FeedDetailTextTableViewCell", bundle: nil), forCellReuseIdentifier: FeedDetailTableData.feedDetailText.cellIdentifier)
@@ -173,7 +210,16 @@ extension FeedDetailViewController: InputBarAccessoryViewDelegate {
         }
     }
 }
+
 extension FeedDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if cell is LoadingTableViewCell {
+              DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.getComments()
+            }
+        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableData.count
     }
@@ -191,7 +237,7 @@ extension FeedDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let data = tableData[section]
         switch data {
-        case .feedDetail, .feedDetailText, .feedDetailImage, .feedDetailLikeShare:
+        case .feedDetail, .feedDetailText, .feedDetailImage, .feedDetailLikeShare, .loading:
             return 1
         case .feedDetailComments(let comments):
             return comments.count
@@ -252,83 +298,15 @@ extension FeedDetailViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "feedDetailsCommentsCell") as! FeedDetailCommentsTableViewCell
             let comment = comments[indexPath.row]
             cell.setComents(comment: comment)
+            
             cell.selectionStyle = .none
             return cell
+            
+        case .loading:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as! LoadingTableViewCell
+            cell.activityIndicator.startAnimating()
+            cell.activityIndicator.isHidden = false
+            return cell
         }
-//        let cell = tableView.dequeueReusableCell(withIdentifier: data.cellIdentifier)
-//        return getCellFor(data: data, feed: selectedFeed, cell: cell)
     }
-//    private func getCellFor(data: FeedDetailTableData, feed: Feed, cell: UITableViewCell?) -> UITableViewCell {
-//
-//        let date = Date(with: feed.createdAt!)
-//        switch data {
-//        case .feedDetail:
-//            guard let feedDetailCell = cell as? FeedDetailTableViewCell else {
-//                return UITableViewCell()
-//            }
-//            DataStore.shared.getUser(uid: feed.creatorId!) { (user, error) in
-//                if let error = error {
-//               self.showErrorWith(title: "Error", msg: error.localizedDescription)
-//               return
-//           }
-//                if let user = user {
-//                    self.title = user.fullName! + "'s Moment"
-//                    feedDetailCell.lblUserName.text = user.fullName
-//                    feedDetailCell.userImage.kf.setImage(with: URL(string: user.imageUrl!))
-//                }
-//            }
-//            feedDetailCell.lblTime.text = date?.timeAgoDisplay()
-//            feedDetailCell.selectionStyle = .none
-//            return feedDetailCell
-//
-//        case .feedDetailImage:
-//            guard let feedDetailImageCell = cell as? FeedDetailImageTableViewCell else {
-//                return UITableViewCell()
-//            }
-//
-//            if let imageUrl = feed.imageUrl {
-//                feedDetailImageCell.imageHolder.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "userPlaceholder"))
-//            }
-//            feedDetailImageCell.selectionStyle = .none
-//            return feedDetailImageCell
-//
-//        case .feedDetailText:
-//            guard let feedDetailTextCell = cell as? FeedDetailTextTableViewCell else {
-//                return UITableViewCell()
-//            }
-//            feedDetailTextCell.lblCaption.text = feed.caption
-//            feedDetailTextCell.lblTime.text = date?.timeAgoDisplay()
-//            feedDetailTextCell.selectionStyle = .none
-//            return feedDetailTextCell
-//
-//        case .feedDetailLikeShare:
-//            guard let feedDetailLikeShareCell = cell as? FeedDetailLikeShareTableViewCell else {
-//                return UITableViewCell()
-//            }
-//            feedDetailLikeShareCell.lblLikeCount.text = "\(feed.likeCount ?? 0)"
-//            feedDetailLikeShareCell.lblShareCount.text = "\(feed.shareCount ?? 0)"
-//            feedDetailLikeShareCell.selectionStyle = .none
-//            return feedDetailLikeShareCell
-//
-//        case .feedDetailComments:
-//            guard let feedDetailCommentsCell = cell as? FeedDetailCommentsTableViewCell else {
-//                return UITableViewCell()
-//            }
-//            DataStore.shared.getUser(uid: feed.creatorId!) { (user, error) in
-//                if let error = error {
-//               self.showErrorWith(title: "Error", msg: error.localizedDescription)
-//               return
-//           }
-//                if let user = user {
-//                    self.title = user.fullName! + "'s Moment"
-//                    feedDetailCommentsCell.lblUserName.text = user.fullName
-//                    feedDetailCommentsCell.userImage.kf.setImage(with: URL(string: user.imageUrl!))
-//                }
-//            }
-//            feedDetailCommentsCell.lblTime.text = date?.timeAgoDisplay()
-////            feedDetailCommentsCell.lblComment.text
-//            feedDetailCommentsCell.selectionStyle = .none
-//            return feedDetailCommentsCell
-//        }
-//    }
 }

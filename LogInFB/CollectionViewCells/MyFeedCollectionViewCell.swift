@@ -81,8 +81,8 @@ class MyFeedCollectionViewCell: UICollectionViewCell {
 //        }
 //    }
 //}
-    
     @IBAction func onLike(_ sender: UIButton) {
+        
         guard let item = feedItem else { return }
         var localUser = DataStore.shared.localUser
         if btnLike.isSelected {
@@ -93,7 +93,6 @@ class MyFeedCollectionViewCell: UICollectionViewCell {
             //already liked
         } else if !btnLike.isSelected {
             //first time likes
-            
             if localUser?.likedMoments == nil {
                 localUser?.likedMoments = []
             }

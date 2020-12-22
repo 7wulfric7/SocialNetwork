@@ -13,13 +13,6 @@
 		220A007C2565322A0016E49E /* StatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 220A007A2565322A0016E49E /* StatsTableViewCell.xib */; };
 		2219B2332553191900DCDC84 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219B2322553191900DCDC84 /* RegisterViewController.swift */; };
 		2219B23725532A2600DCDC84 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2219B23625532A2600DCDC84 /* String.swift */; };
-		2229421B25703CDB00CB1791 /* OtherUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229421A25703CDB00CB1791 /* OtherUsersViewController.swift */; };
-		2229422025703E0E00CB1791 /* OtherBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229421E25703E0E00CB1791 /* OtherBasicInfoTableViewCell.swift */; };
-		2229422125703E0E00CB1791 /* OtherBasicInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2229421F25703E0E00CB1791 /* OtherBasicInfoTableViewCell.xib */; };
-		2229422625703E2A00CB1791 /* OtherAboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229422425703E2A00CB1791 /* OtherAboutTableViewCell.swift */; };
-		2229422725703E2A00CB1791 /* OtherAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2229422525703E2A00CB1791 /* OtherAboutTableViewCell.xib */; };
-		2229422B25703E3B00CB1791 /* OtherStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229422925703E3B00CB1791 /* OtherStatsTableViewCell.swift */; };
-		2229422C25703E3B00CB1791 /* OtherStatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2229422A25703E3B00CB1791 /* OtherStatsTableViewCell.xib */; };
 		2240F7FB2585A26C00AE9B26 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2240F7FD2585A26C00AE9B26 /* Home.storyboard */; };
 		2241138D2577A7D4005F8910 /* MyFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241138B2577A7D4005F8910 /* MyFeedCollectionViewCell.swift */; };
 		2241138E2577A7D4005F8910 /* MyFeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2241138C2577A7D4005F8910 /* MyFeedCollectionViewCell.xib */; };
@@ -34,6 +27,7 @@
 		224113A5257806E1005F8910 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224113A4257806E1005F8910 /* Date.swift */; };
 		2243F00F255B49D000A4D5A4 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243F00E255B49D000A4D5A4 /* ResetPasswordViewController.swift */; };
 		2243F012255B511800A4D5A4 /* CreateNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243F011255B511800A4D5A4 /* CreateNewPasswordViewController.swift */; };
+		224A993A259111B2007D8D48 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A9939259111B2007D8D48 /* LoadingTableViewCell.swift */; };
 		226BC0CF257562CE001D11C2 /* CreateMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BC0CE257562CE001D11C2 /* CreateMomentViewController.swift */; };
 		226BC0D225757652001D11C2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BC0D125757652001D11C2 /* Feed.swift */; };
 		228154262563005100131BEA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228154252563005100131BEA /* ProfileViewController.swift */; };
@@ -73,13 +67,6 @@
 		220A007A2565322A0016E49E /* StatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsTableViewCell.xib; sourceTree = "<group>"; };
 		2219B2322553191900DCDC84 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2219B23625532A2600DCDC84 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		2229421A25703CDB00CB1791 /* OtherUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersViewController.swift; sourceTree = "<group>"; };
-		2229421E25703E0E00CB1791 /* OtherBasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherBasicInfoTableViewCell.swift; sourceTree = "<group>"; };
-		2229421F25703E0E00CB1791 /* OtherBasicInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherBasicInfoTableViewCell.xib; sourceTree = "<group>"; };
-		2229422425703E2A00CB1791 /* OtherAboutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAboutTableViewCell.swift; sourceTree = "<group>"; };
-		2229422525703E2A00CB1791 /* OtherAboutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherAboutTableViewCell.xib; sourceTree = "<group>"; };
-		2229422925703E3B00CB1791 /* OtherStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherStatsTableViewCell.swift; sourceTree = "<group>"; };
-		2229422A25703E3B00CB1791 /* OtherStatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherStatsTableViewCell.xib; sourceTree = "<group>"; };
 		2240F7FC2585A26C00AE9B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		2241138B2577A7D4005F8910 /* MyFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		2241138C2577A7D4005F8910 /* MyFeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFeedCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -94,6 +81,7 @@
 		224113A4257806E1005F8910 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		2243F00E255B49D000A4D5A4 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		2243F011255B511800A4D5A4 /* CreateNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordViewController.swift; sourceTree = "<group>"; };
+		224A9939259111B2007D8D48 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		226BC0CE257562CE001D11C2 /* CreateMomentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMomentViewController.swift; sourceTree = "<group>"; };
 		226BC0D125757652001D11C2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		228154252563005100131BEA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -154,19 +142,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		2229421D25703DA400CB1791 /* OthersTableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				2229421E25703E0E00CB1791 /* OtherBasicInfoTableViewCell.swift */,
-				2229421F25703E0E00CB1791 /* OtherBasicInfoTableViewCell.xib */,
-				2229422425703E2A00CB1791 /* OtherAboutTableViewCell.swift */,
-				2229422525703E2A00CB1791 /* OtherAboutTableViewCell.xib */,
-				2229422925703E3B00CB1791 /* OtherStatsTableViewCell.swift */,
-				2229422A25703E3B00CB1791 /* OtherStatsTableViewCell.xib */,
-			);
-			path = OthersTableViewCells;
-			sourceTree = "<group>";
-		};
 		224113852577A70E005F8910 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,7 +178,6 @@
 			children = (
 				228154252563005100131BEA /* ProfileViewController.swift */,
 				22C642C1256ECA360001ADBF /* SearchUsersViewController.swift */,
-				2229421A25703CDB00CB1791 /* OtherUsersViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -247,6 +221,7 @@
 				224113A02577CDE4005F8910 /* FeedDetailLikeShareTableViewCell.xib */,
 				2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */,
 				2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */,
+				224A9939259111B2007D8D48 /* LoadingTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -291,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				224113852577A70E005F8910 /* CollectionViewCells */,
-				2229421D25703DA400CB1791 /* OthersTableViewCells */,
 				22B935B52563040400EC69E8 /* TableViewCells */,
 				2281541E2562FC2000131BEA /* Soryboards */,
 				229C0DB2255C5A8200183081 /* Models */,
@@ -404,13 +378,10 @@
 				22B935B92563043900EC69E8 /* BasicInfoTableViewCell.xib in Resources */,
 				220A007C2565322A0016E49E /* StatsTableViewCell.xib in Resources */,
 				22FD1B7D25507419007E2A81 /* LaunchScreen.storyboard in Resources */,
-				2229422125703E0E00CB1791 /* OtherBasicInfoTableViewCell.xib in Resources */,
-				2229422C25703E3B00CB1791 /* OtherStatsTableViewCell.xib in Resources */,
 				2240F7FB2585A26C00AE9B26 /* Home.storyboard in Resources */,
 				22FD1BA325508B4E007E2A81 /* GoogleService-Info.plist in Resources */,
 				22FD1B7A25507419007E2A81 /* Assets.xcassets in Resources */,
 				220A007725652E2F0016E49E /* AboutMeTableViewCell.xib in Resources */,
-				2229422725703E2A00CB1791 /* OtherAboutTableViewCell.xib in Resources */,
 				229903812587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib in Resources */,
 				224113932577C2B2005F8910 /* FeedDetailTableViewCell.xib in Resources */,
 				22C642C8256ECAF40001ADBF /* UserTableViewCell.xib in Resources */,
@@ -471,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				224A993A259111B2007D8D48 /* LoadingTableViewCell.swift in Sources */,
 				229903802587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift in Sources */,
 				22B935B82563043900EC69E8 /* BasicInfoTableViewCell.swift in Sources */,
 				2241139C2577CAF5005F8910 /* FeedDetailTextTableViewCell.swift in Sources */,
@@ -484,7 +456,6 @@
 				220A007B2565322A0016E49E /* StatsTableViewCell.swift in Sources */,
 				2243F012255B511800A4D5A4 /* CreateNewPasswordViewController.swift in Sources */,
 				228154262563005100131BEA /* ProfileViewController.swift in Sources */,
-				2229421B25703CDB00CB1791 /* OtherUsersViewController.swift in Sources */,
 				2241138D2577A7D4005F8910 /* MyFeedCollectionViewCell.swift in Sources */,
 				224113972577C8AF005F8910 /* FeedDetailImageTableViewCell.swift in Sources */,
 				22BF4DF3255C8E5A00F4E55A /* SetUpProfileViewController.swift in Sources */,
@@ -496,15 +467,12 @@
 				22C642C2256ECA360001ADBF /* SearchUsersViewController.swift in Sources */,
 				22FFC1302559B4E700FDF3FD /* UIColor.swift in Sources */,
 				226BC0D225757652001D11C2 /* Feed.swift in Sources */,
-				2229422625703E2A00CB1791 /* OtherAboutTableViewCell.swift in Sources */,
 				224113A5257806E1005F8910 /* Date.swift in Sources */,
 				226BC0CF257562CE001D11C2 /* CreateMomentViewController.swift in Sources */,
-				2229422B25703E3B00CB1791 /* OtherStatsTableViewCell.swift in Sources */,
 				220A007625652E2F0016E49E /* AboutMeTableViewCell.swift in Sources */,
 				22C642C7256ECAF40001ADBF /* UserTableViewCell.swift in Sources */,
 				22FFC12D2559AF1800FDF3FD /* SignInViewController.swift in Sources */,
 				22FD1B7125507418007E2A81 /* AppDelegate.swift in Sources */,
-				2229422025703E0E00CB1791 /* OtherBasicInfoTableViewCell.swift in Sources */,
 				22FD1B7325507418007E2A81 /* SceneDelegate.swift in Sources */,
 				22FD1B93255087DC007E2A81 /* HomeViewController.swift in Sources */,
 				224113A12577CDE4005F8910 /* FeedDetailLikeShareTableViewCell.swift in Sources */,

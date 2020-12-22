@@ -392,36 +392,6 @@
             </objects>
             <point key="canvasLocation" x="2354" y="240"/>
         </scene>
-        <!--Other Users View Controller-->
-        <scene sceneID="J1O-Zt-uKK">
-            <objects>
-                <viewController storyboardIdentifier="OtherUsersViewController" id="gZK-De-xqK" customClass="OtherUsersViewController" customModule="LogInFB" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mEX-pO-BfW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iJb-Pj-9Ez">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="GVJ-E9-Qb4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="iJb-Pj-9Ez" firstAttribute="top" secondItem="GVJ-E9-Qb4" secondAttribute="top" id="Az1-Op-6MC"/>
-                            <constraint firstItem="GVJ-E9-Qb4" firstAttribute="bottom" secondItem="iJb-Pj-9Ez" secondAttribute="bottom" id="GoF-da-siK"/>
-                            <constraint firstItem="GVJ-E9-Qb4" firstAttribute="trailing" secondItem="iJb-Pj-9Ez" secondAttribute="trailing" id="IbW-gJ-Ml9"/>
-                            <constraint firstItem="iJb-Pj-9Ez" firstAttribute="leading" secondItem="GVJ-E9-Qb4" secondAttribute="leading" id="fan-gD-SEo"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="iJb-Pj-9Ez" id="jlG-hC-9eK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ikQ-VN-nhJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2354" y="926"/>
-        </scene>
         <!--Search Users View Controller-->
         <scene sceneID="CL9-xk-lGr">
             <objects>
@@ -455,7 +425,6 @@
                     <connections>
                         <outlet property="searchBar" destination="pAj-6a-Zay" id="6ro-gd-ocl"/>
                         <outlet property="tableView" destination="6gt-Qy-azw" id="Vgx-SH-MCY"/>
-                        <segue destination="gZK-De-xqK" kind="presentation" identifier="otherUsersSegue" id="cjj-RT-BNE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHA-mr-Vfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

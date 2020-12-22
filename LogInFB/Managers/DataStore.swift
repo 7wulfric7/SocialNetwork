@@ -171,29 +171,34 @@ class DataStore {
         }
         
     }
-    func fetchComments(feedId: String, completionBlock: @escaping(_ comments: [Comment]?,_ error: Error?) -> Void) {
-        
+    func fetchComments(feedId: String, pageSize: Int, lastDocument: DocumentSnapshot?, completionBlock: @escaping(_ comments: [Comment]?, _ error: Error?, _ lastDocument: DocumentSnapshot?) -> Void) {
        
-        let commentsRef = database.collection("comment").whereField("momentId", isEqualTo: feedId)
-        
-        commentsRef.getDocuments { (snapshot, error) in
+        let commentsRef = database.collection("comment")
+        var commentsQuery: Query
+        if let lastDocument = lastDocument {
+            commentsQuery = commentsRef.whereField("momentId", isEqualTo: feedId).order(by: "createdAt").start(afterDocument: lastDocument).limit(to: pageSize)
+        } else {
+            commentsQuery = commentsRef.whereField("momentId", isEqualTo: feedId).order(by: "createdAt").limit(to: pageSize)
+        }
+        commentsQuery.getDocuments { (snapshot, error) in
             if let error = error {
-                completionBlock(nil, error)
+                completionBlock(nil, error, nil)
                 return
             }
             if let snapshot = snapshot {
                 do {
-                    var comments = try snapshot.documents.compactMap({ try $0.data(as: Comment.self) })
-                    comments.sort { (feedOne, feedTwo) -> Bool in
-                        guard let oneDate = feedOne.createdAt else { return false }
-                        guard let twoDate = feedTwo.createdAt else { return false }
-                        return oneDate < twoDate
-                    }
-                    completionBlock(comments, nil)
+                    let comments = try snapshot.documents.compactMap({ try $0.data(as: Comment.self) })
+//      this type of sorting is replaced with .order as seen above
+//                        comments.sort { (feedOne, feedTwo) -> Bool in
+//                        guard let oneDate = feedOne.createdAt else { return false }
+//                        guard let twoDate = feedTwo.createdAt else { return false }
+//                        return oneDate < twoDate
+//                    }
+                    completionBlock(comments, nil, snapshot.documents.last)
                    
                 } catch {
                     print(error.localizedDescription)
-                    completionBlock(nil, error)
+                    completionBlock(nil, error, nil)
                 }
                 
             }
