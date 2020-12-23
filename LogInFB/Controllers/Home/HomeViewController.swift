@@ -30,10 +30,9 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refresh(_:)), name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
     }
     func customizeButton(btnPost: UIButton) {
-        btnPost.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.50).cgColor
-        btnPost.layer.shadowOpacity = 0.8
-        btnPost.layer.shadowRadius = 2.0
-        btnPost.layer.shadowOffset = CGSize(width: 3.0, height: 5.0)
+        btnPost.layer.shadowColor = UIColor(red: 0.102, green: 0.102, blue: 0.102, alpha: 0.20).cgColor
+        btnPost.layer.shadowOpacity = 0.9
+        btnPost.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
     }
     func setupCollectionView() {
         collectionView.register(UINib(nibName: "MyFeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyFeedCollectionViewCell")

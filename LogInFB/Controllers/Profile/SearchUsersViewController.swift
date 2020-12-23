@@ -7,8 +7,6 @@
 
 import UIKit
 import SVProgressHUD
-import Kingfisher
-
 
 class SearchUsersViewController: UIViewController {
 

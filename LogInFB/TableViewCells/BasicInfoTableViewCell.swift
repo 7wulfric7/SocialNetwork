@@ -52,7 +52,7 @@ class BasicInfoTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func oneditImage(_ sender: UIButton) {
+    @IBAction func onEditImage(_ sender: UIButton) {
         if let user = user, user.id == DataStore.shared.localUser?.id {
         delegate?.didClickOnEditImage()
         } else {

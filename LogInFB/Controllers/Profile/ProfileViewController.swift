@@ -42,7 +42,6 @@ enum ProfileViewTableData {
     }
 }
 
-
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -57,7 +56,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-//        title = "You"
         if user == nil {
             setupNewPostButton()
         }
@@ -245,6 +243,8 @@ extension ProfileViewController: UITableViewDataSource {
             basicCell.lblOtherInfo.text = (user.gender ?? "") + ", " + (user.location ?? "") //Dokolku propertito e nil ke ja zeme desnata vrednost odnosno “defaultValue” (variable ?? defaultValue)
             if let imageUrl = user.imageUrl {
                 basicCell.profileImage.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "userPlaceholder"))
+            } else {
+                basicCell.profileImage.image = UIImage(named: "userPlaceholder")
             }
             basicCell.selectionStyle = .none
             basicCell.delegate = self
