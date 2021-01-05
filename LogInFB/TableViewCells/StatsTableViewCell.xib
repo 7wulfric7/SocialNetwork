@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -115,6 +115,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F O L L O W I N G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btV-XF-gWx">
                                 <rect key="frame" x="16" y="34" width="105" height="27"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="105" id="0VT-uM-NsM"/>
                                 </constraints>
@@ -131,19 +132,43 @@
                             <constraint firstAttribute="width" constant="125" id="oE8-Nt-fVk"/>
                         </constraints>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ace-19-uZU">
+                        <rect key="frame" x="266" y="47" width="105" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="105" id="5bz-1w-aIa"/>
+                        </constraints>
+                        <connections>
+                            <action selector="onFollowing:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eGB-re-QDd"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kn8-hD-EaT">
+                        <rect key="frame" x="141" y="47" width="105" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="105" id="sPS-ov-HG8"/>
+                        </constraints>
+                        <connections>
+                            <action selector="onFollowers:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lVT-b5-c7n"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="F64-ev-6J4" secondAttribute="bottom" id="4Ny-aM-bTk"/>
                     <constraint firstItem="F64-ev-6J4" firstAttribute="top" secondItem="HJN-pB-hGM" secondAttribute="bottom" id="4vO-ef-hDq"/>
                     <constraint firstItem="ngQ-ZT-qd7" firstAttribute="leading" secondItem="F64-ev-6J4" secondAttribute="trailing" id="71a-uP-3vJ"/>
+                    <constraint firstAttribute="bottom" secondItem="Kn8-hD-EaT" secondAttribute="bottom" constant="17" id="FSw-pu-bny"/>
+                    <constraint firstItem="ace-19-uZU" firstAttribute="top" secondItem="HJN-pB-hGM" secondAttribute="bottom" constant="30" id="FTa-2a-lSa"/>
                     <constraint firstAttribute="bottom" secondItem="ngQ-ZT-qd7" secondAttribute="bottom" id="LAz-E6-xgB"/>
                     <constraint firstItem="F64-ev-6J4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Q0Q-2g-aV9"/>
+                    <constraint firstItem="Kn8-hD-EaT" firstAttribute="top" secondItem="HJN-pB-hGM" secondAttribute="bottom" constant="30" id="SEd-xs-49y"/>
+                    <constraint firstAttribute="bottom" secondItem="ace-19-uZU" secondAttribute="bottom" constant="17" id="TpE-vo-SO0"/>
                     <constraint firstItem="ngQ-ZT-qd7" firstAttribute="top" secondItem="HJN-pB-hGM" secondAttribute="bottom" id="WbJ-od-9vv"/>
                     <constraint firstAttribute="bottom" secondItem="ere-e6-osa" secondAttribute="bottom" id="Z6F-qV-TAn"/>
                     <constraint firstAttribute="trailing" secondItem="ere-e6-osa" secondAttribute="trailing" id="eDM-XH-4Xm"/>
                     <constraint firstAttribute="trailing" secondItem="HJN-pB-hGM" secondAttribute="trailing" id="eRd-mB-9bo"/>
+                    <constraint firstItem="Kn8-hD-EaT" firstAttribute="leading" secondItem="F64-ev-6J4" secondAttribute="trailing" constant="16" id="lw0-MI-pC7"/>
                     <constraint firstItem="HJN-pB-hGM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="q5C-Wi-n5V"/>
                     <constraint firstItem="ere-e6-osa" firstAttribute="top" secondItem="HJN-pB-hGM" secondAttribute="bottom" id="rJI-KD-6Q6"/>
+                    <constraint firstItem="ace-19-uZU" firstAttribute="leading" secondItem="ngQ-ZT-qd7" secondAttribute="trailing" constant="16" id="sYG-y4-QcJ"/>
                     <constraint firstItem="HJN-pB-hGM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vYo-02-nCa"/>
                 </constraints>
             </tableViewCellContentView>
@@ -155,6 +180,8 @@
                 <outlet property="lblFollowingText" destination="btV-XF-gWx" id="wrG-Jk-c3d"/>
                 <outlet property="lblMomentsNumbers" destination="oiI-sl-3Lw" id="qnO-o3-72O"/>
                 <outlet property="lblMomentsText" destination="Tor-du-1xO" id="Lq1-YN-Lop"/>
+                <outlet property="onFollowers" destination="Kn8-hD-EaT" id="uPd-p8-DaB"/>
+                <outlet property="onFollowing" destination="ace-19-uZU" id="ZS5-af-1Tw"/>
             </connections>
             <point key="canvasLocation" x="131.15942028985509" y="81.361607142857139"/>
         </tableViewCell>

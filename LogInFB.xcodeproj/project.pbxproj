@@ -27,10 +27,13 @@
 		224113A5257806E1005F8910 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224113A4257806E1005F8910 /* Date.swift */; };
 		2243F00F255B49D000A4D5A4 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243F00E255B49D000A4D5A4 /* ResetPasswordViewController.swift */; };
 		2243F012255B511800A4D5A4 /* CreateNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243F011255B511800A4D5A4 /* CreateNewPasswordViewController.swift */; };
+		2247DEEC2597596E00584D34 /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2247DEEB2597596E00584D34 /* Following.swift */; };
 		224A993A259111B2007D8D48 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A9939259111B2007D8D48 /* LoadingTableViewCell.swift */; };
+		224C802E259A628700FABD11 /* FollowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C802D259A628700FABD11 /* FollowManager.swift */; };
 		226BC0CF257562CE001D11C2 /* CreateMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BC0CE257562CE001D11C2 /* CreateMomentViewController.swift */; };
 		226BC0D225757652001D11C2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226BC0D125757652001D11C2 /* Feed.swift */; };
 		228154262563005100131BEA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228154252563005100131BEA /* ProfileViewController.swift */; };
+		22883ACD2593E26800685607 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22883ACC2593E26800685607 /* LoadingCollectionViewCell.swift */; };
 		229903802587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */; };
 		229903812587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */; };
 		229C0DB0255C594400183081 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C0DAF255C594400183081 /* DataStore.swift */; };
@@ -46,6 +49,7 @@
 		22C642C8256ECAF40001ADBF /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C642C6256ECAF40001ADBF /* UserTableViewCell.xib */; };
 		22C642CB256ECDB70001ADBF /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C642CA256ECDB70001ADBF /* UITableViewCell.swift */; };
 		22E79FF12555D25600AE20D7 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E79FF02555D25600AE20D7 /* DeviceType.swift */; };
+		22EA044725965A090043BE32 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 22EA044625965A090043BE32 /* SnapKit */; };
 		22FD1B7125507418007E2A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD1B7025507418007E2A81 /* AppDelegate.swift */; };
 		22FD1B7325507418007E2A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD1B7225507418007E2A81 /* SceneDelegate.swift */; };
 		22FD1B7825507418007E2A81 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22FD1B7625507418007E2A81 /* Auth.storyboard */; };
@@ -81,10 +85,13 @@
 		224113A4257806E1005F8910 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		2243F00E255B49D000A4D5A4 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		2243F011255B511800A4D5A4 /* CreateNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordViewController.swift; sourceTree = "<group>"; };
+		2247DEEB2597596E00584D34 /* Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
 		224A9939259111B2007D8D48 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		224C802D259A628700FABD11 /* FollowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowManager.swift; sourceTree = "<group>"; };
 		226BC0CE257562CE001D11C2 /* CreateMomentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMomentViewController.swift; sourceTree = "<group>"; };
 		226BC0D125757652001D11C2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		228154252563005100131BEA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		22883ACC2593E26800685607 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailCommentsTableViewCell.swift; sourceTree = "<group>"; };
 		2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedDetailCommentsTableViewCell.xib; sourceTree = "<group>"; };
 		229C0DAF255C594400183081 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -122,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22EA044725965A090043BE32 /* SnapKit in Frameworks */,
 				44BB0D442EBCB5BD48914FBF /* Pods_LogInFB.framework in Frameworks */,
 				22BF2F46258A7999002915E4 /* InputBarAccessoryView in Frameworks */,
 			);
@@ -186,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				229C0DAF255C594400183081 /* DataStore.swift */,
+				224C802D259A628700FABD11 /* FollowManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -196,6 +205,7 @@
 				229C0DB3255C5A9700183081 /* User.swift */,
 				226BC0D125757652001D11C2 /* Feed.swift */,
 				22BF2F48258A8B51002915E4 /* Comment.swift */,
+				2247DEEB2597596E00584D34 /* Following.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,6 +232,7 @@
 				2299037E2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift */,
 				2299037F2587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.xib */,
 				224A9939259111B2007D8D48 /* LoadingTableViewCell.swift */,
+				22883ACC2593E26800685607 /* LoadingCollectionViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -330,6 +341,7 @@
 			name = LogInFB;
 			packageProductDependencies = (
 				22BF2F45258A7999002915E4 /* InputBarAccessoryView */,
+				22EA044625965A090043BE32 /* SnapKit */,
 			);
 			productName = LogInFB;
 			productReference = 22FD1B6D25507418007E2A81 /* LogInFB.app */;
@@ -360,6 +372,7 @@
 			mainGroup = 22FD1B6425507418007E2A81;
 			packageReferences = (
 				22BF2F44258A7999002915E4 /* XCRemoteSwiftPackageReference "InputBarAccessoryView" */,
+				22EA044525965A090043BE32 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 22FD1B6E25507418007E2A81 /* Products */;
 			projectDirPath = "";
@@ -443,8 +456,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				224A993A259111B2007D8D48 /* LoadingTableViewCell.swift in Sources */,
+				224C802E259A628700FABD11 /* FollowManager.swift in Sources */,
 				229903802587D7CD00BBA488 /* FeedDetailCommentsTableViewCell.swift in Sources */,
 				22B935B82563043900EC69E8 /* BasicInfoTableViewCell.swift in Sources */,
+				22883ACD2593E26800685607 /* LoadingCollectionViewCell.swift in Sources */,
 				2241139C2577CAF5005F8910 /* FeedDetailTextTableViewCell.swift in Sources */,
 				229C0DB0255C594400183081 /* DataStore.swift in Sources */,
 				2219B23725532A2600DCDC84 /* String.swift in Sources */,
@@ -460,6 +475,7 @@
 				224113972577C8AF005F8910 /* FeedDetailImageTableViewCell.swift in Sources */,
 				22BF4DF3255C8E5A00F4E55A /* SetUpProfileViewController.swift in Sources */,
 				229C0DB4255C5A9700183081 /* User.swift in Sources */,
+				2247DEEC2597596E00584D34 /* Following.swift in Sources */,
 				22E79FF12555D25600AE20D7 /* DeviceType.swift in Sources */,
 				22FFC1332559B5CF00FDF3FD /* UIViewController.swift in Sources */,
 				22BF2F49258A8B51002915E4 /* Comment.swift in Sources */,
@@ -631,18 +647,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4UUZZ94GNC;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2LEJV6KBBG;
 				INFOPLIST_FILE = LogInFB/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.denizadil.socialnetwork;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeacademy.class;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "CodeAcademy Class Dev Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -654,18 +670,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4UUZZ94GNC;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2LEJV6KBBG;
 				INFOPLIST_FILE = LogInFB/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.denizadil.socialnetwork;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codeacademy.class;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "CodeAcademy Class Dev Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -703,6 +719,14 @@
 				minimumVersion = 5.2.2;
 			};
 		};
+		22EA044525965A090043BE32 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -710,6 +734,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 22BF2F44258A7999002915E4 /* XCRemoteSwiftPackageReference "InputBarAccessoryView" */;
 			productName = InputBarAccessoryView;
+		};
+		22EA044625965A090043BE32 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22EA044525965A090043BE32 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

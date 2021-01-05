@@ -11,13 +11,18 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth
 
-typealias FeedItemsCompletion = ((_ items: [Feed]?,_ error: Error?) -> Void)
+typealias FeedItemsCompletion = ((_ items: [Feed]?, _ error: Error?, _ lastDocument: DocumentSnapshot?) -> Void)
 
 class DataStore {
     static let shared = DataStore()
     init() {}
     
-    var localUser: User?
+    var localUser: User? {
+    didSet {
+        FollowManager.shared.getFollowing()
+        FollowManager.shared.getFollowers()
+        }
+    }
     private let storage = Storage.storage()
     
     private let database = Firestore.firestore()
@@ -62,6 +67,91 @@ class DataStore {
         }
     }
 }
+    func followUser(user: User, completion: @escaping(_ success: Bool,_ error: Error?) -> Void) {
+        guard let localUser = localUser,
+              let localUserId = localUser.id,
+              let followUserId = user.id else {
+            completion(false, nil)
+            return
+        }
+        let followingRef = database.collection("users").document(localUserId).collection("following").document()
+        var following = Following()
+        following.userId = followUserId
+        following.id = followingRef.documentID
+        following.createdAt = Date().toMiliseconds()
+        do {
+           try followingRef.setData(from: following) { (error) in
+                if let error = error {
+                   completion(false, error)
+                    return
+                }
+            completion(true, nil)
+            }
+        } catch {
+            print(error.localizedDescription)
+            completion(false, error)
+        }
+    }
+    
+    func getFollowCount(userId: String, isFollowers: Bool, completion: @escaping (_ count: Int,_ error: Error?) -> Void) {
+        
+        let collectionName = isFollowers ? "followers" : "following"
+        let followersRef = database.collection("users").document(userId).collection(collectionName)
+        followersRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(0, error)
+                return
+            }
+            if let snapshot = snapshot {
+                completion(snapshot.documents.count, nil)
+            }
+        }
+    }
+    
+    func getFollowers(completion: @escaping (_ followers: [Follow]?, _ error: Error?) -> Void) {
+        guard let localUser = localUser, let localUserID = localUser.id else {
+            completion(nil, nil)
+            return
+        }
+        let followersRef = database.collection("users").document(localUserID).collection("followers")
+        followersRef.getDocuments { (snapshot, error) in
+          if let error = error {
+                completion(nil, error)
+            }
+            if let snapshot = snapshot {
+                do {
+                    let followers = try snapshot.documents.compactMap({try $0.data(as: Follow.self)})
+                    completion(followers, nil)
+                } catch {
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
+    func getFollowings(completion: @escaping (_ followers: [Follow]?, _ error: Error?) -> Void) {
+        guard let localUser = localUser, let localUserID = localUser.id else {
+            completion(nil, nil)
+            return
+        }
+        let followingRef = database.collection("users").document(localUserID).collection("following")
+        followingRef.getDocuments { (snapshot, error) in
+           if let error = error {
+                completion(nil, error)
+            }
+            if let snapshot = snapshot {
+                do {
+                    let followings = try snapshot.documents.compactMap({try $0.data(as: Follow.self)})
+                    completion(followings, nil)
+                } catch {
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
     func uploadImage(image: UIImage, itemId: String, isUserImage: Bool = true, completion: @escaping (_ imageUrl: URL?,_ error: Error?) -> Void) {
         var imageRef = storage.reference()
         if isUserImage {
@@ -100,7 +190,7 @@ class DataStore {
 //                        userEmails.append(email)
 //                    }
 //                }
-//                //CompactMap done with Foreach
+//                //CompactMap done with For-each
 //                userss.forEach { user in
 //                    if let email = user.email {
 //                        userEmails.append(email)
@@ -135,24 +225,30 @@ class DataStore {
             print(error.localizedDescription)
         }
     }
-    func fetchFeedItems(completion: @escaping FeedItemsCompletion) {
+    func fetchFeedItems(pageSize: Int, lastDocument: DocumentSnapshot?, completion: @escaping FeedItemsCompletion) {
         let feedRef = database.collection("feed")
 //        collection reference is a subclass of Query, so it can be casted to Query
         var feedQuery: Query = feedRef
-        if let localUser = DataStore.shared.localUser, let blockedUsers = localUser.blockedUsersID, blockedUsers.count > 0 {
-            feedQuery = feedRef.whereField("creatorId", notIn: blockedUsers)
+        
+//        if let localUser = DataStore.shared.localUser, let blockedUsers = localUser.blockedUsersID, blockedUsers.count > 0 {
+//            feedQuery = feedRef.whereField("creatorId", notIn: blockedUsers)
+//        }
+        if let lastDocument = lastDocument {
+            feedQuery = feedRef.order(by: "createdAt", descending: true).start(afterDocument: lastDocument).limit(to: pageSize)
+        } else {
+            feedQuery = feedRef.order(by: "createdAt", descending: true).limit(to: pageSize)
         }
         feedQuery.getDocuments { (snapshot, error) in
             if let error = error {
-                completion(nil, error)
+                completion(nil, error, nil)
                 return
             }
             if let snapshot = snapshot {
                 do {
                     let feeds = try snapshot.documents.compactMap({ try $0.data(as: Feed.self) })
-                    completion(feeds, nil)
+                    completion(feeds, nil, snapshot.documents.last)
                 } catch (let error) {
-                    completion(nil, error)
+                    completion(nil, error, nil)
                 }
             }
         }
@@ -200,7 +296,6 @@ class DataStore {
                     print(error.localizedDescription)
                     completionBlock(nil, error, nil)
                 }
-                
             }
         }
     }

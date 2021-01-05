@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 import CoreServices
 import SwiftPhotoGallery
+import SVProgressHUD
 
 enum ProfileViewTableData {
     case basicInfo
@@ -59,6 +60,7 @@ class ProfileViewController: UIViewController {
         if user == nil {
             setupNewPostButton()
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Notification.Name("ReloadAfterUserAction"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +86,12 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorInset = UIEdgeInsets.zero
+    }
+    @objc func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
+            self.tableView.reloadData()
+
+        }
     }
     @objc func onEditProfile() {
         let storyBoard = UIStoryboard(name: "Auth", bundle: nil)
@@ -136,22 +144,22 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: BasicinfoCellDelegate {
-    func didFollowUsers(user: User?, isFollowed: Bool) {
-        guard var localUser = DataStore.shared.localUser, let userId = user?.id else {return}
-        if localUser.followingUsersID == nil {
-            localUser.followingUsersID = [String]()
-        }
-        if isFollowed {
-            localUser.followingUsersID?.append(userId)
-        } else {
-            localUser.followingUsersID?.removeAll(where: {$0 == user?.id})
-        }
-        localUser.save{ (_, _) in
-            self.tableView.reloadData()
-        NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
-        }
-    }
-    
+//    func didFollowUsers(user: User?, isFollowed: Bool) {
+//        guard var localUser = DataStore.shared.localUser, let userId = user?.id else {return}
+//        if localUser.followingUsersID == nil {
+//            localUser.followingUsersID = [String]()
+//        }
+//        if isFollowed {
+//            localUser.followingUsersID?.append(userId)
+//        } else {
+//            localUser.followingUsersID?.removeAll(where: {$0 == user?.id})
+//        }
+//        localUser.save{ (_, _) in
+//            self.tableView.reloadData()
+//        NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
+//        }
+//    }
+
     func didClickOnEditImage() {
         openEditImageSheet()
     }
@@ -238,14 +246,6 @@ extension ProfileViewController: UITableViewDataSource {
                 }
             }
             basicCell.profileImage.image = pickedImage
-            basicCell.user = user
-            basicCell.lblName.text = user.fullName
-            basicCell.lblOtherInfo.text = (user.gender ?? "") + ", " + (user.location ?? "") //Dokolku propertito e nil ke ja zeme desnata vrednost odnosno “defaultValue” (variable ?? defaultValue)
-            if let imageUrl = user.imageUrl {
-                basicCell.profileImage.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "userPlaceholder"))
-            } else {
-                basicCell.profileImage.image = UIImage(named: "userPlaceholder")
-            }
             basicCell.selectionStyle = .none
             basicCell.delegate = self
             basicCell.setData(user: user)
@@ -261,10 +261,14 @@ extension ProfileViewController: UITableViewDataSource {
             guard let statsCell = cell as? StatsTableViewCell else {
                 return UITableViewCell()
             }
+            
             statsCell.lblMomentsNumbers.text = "\(user.moments ?? 0)"
-            statsCell.lblFollowersNumbers.text = "\(user.followers ?? 0)"
-            statsCell.lblFollowingNumbers.text = "\(user.followingUsersID?.count ?? 0)"
+            statsCell.userId = user.id
+            statsCell.setCounts()
+//            statsCell.lblFollowersNumbers.text = "\(user.followers ?? 0)"
+//            statsCell.lblFollowingNumbers.text = "\(user.followingUsersID?.count ?? 0)"
             statsCell.selectionStyle = .none
+            statsCell.delegate = self
             return statsCell
         case .myMoments:
             return UITableViewCell()
@@ -274,5 +278,22 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 95
+    }
+}
+extension ProfileViewController: StatsTableViewDelegate {
+    func didClickOnFollowing() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SearchUsersViewController") as! SearchUsersViewController
+        controller.state = .following
+        controller.follow = FollowManager.shared.following
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func didClickOnFollowers() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SearchUsersViewController") as! SearchUsersViewController
+        controller.state = .followers
+        controller.follow = FollowManager.shared.followers
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

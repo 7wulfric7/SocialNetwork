@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 protocol BasicinfoCellDelegate: class {
     func didClickOnEditImage()
     func didTapOnUserImage(user: User?, image: UIImage?)
-    func didFollowUsers(user: User?, isFollowed: Bool)
+//    func didFollowUsers(user: User?, isFollowed: Bool)
 }
 
 class BasicInfoTableViewCell: UITableViewCell {
@@ -22,10 +23,14 @@ class BasicInfoTableViewCell: UITableViewCell {
     
     var user: User?
     weak var delegate: BasicinfoCellDelegate?
-   
+    private let database = Firestore.firestore()
+ 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        btnFollow.layer.cornerRadius = 4
+        btnFollow.layer.masksToBounds = true
         profileImage.layer.cornerRadius = 28
         profileImage.layer.masksToBounds = true
     }
@@ -38,20 +43,49 @@ class BasicInfoTableViewCell: UITableViewCell {
     
     func setData(user: User) {
         self.user = user
-        guard let localUser = DataStore.shared.localUser, let userId = user.id, let followedUsers = localUser.followingUsersID else {return}
-        if followedUsers.contains(userId) {
-            btnFollow.isSelected = true
-            btnFollow.backgroundColor = UIColor(named: "MainPink")?.withAlphaComponent(0.2)
+        lblName.text = user.fullName
+        lblOtherInfo.text = (user.gender ?? "") + ", " + (user.location ?? "") //Dokolku propertito e nil ke ja zeme desnata vrednost odnosno “defaultValue” (variable ?? defaultValue)
+        if let imageUrl = user.imageUrl {
+            profileImage.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "userPlaceholder"))
         } else {
-            btnFollow.isSelected = false
-            btnFollow.backgroundColor = UIColor(named: "MainPink")
+            profileImage.image = UIImage(named: "userPlaceholder")
         }
-        guard let myID = user.id, let user = DataStore.shared.localUser?.id else {return}
-        if myID == user {
-                self.btnFollow.isHidden = true
+        guard let localUser = DataStore.shared.localUser else { return }
+        if user.id != localUser.id {
+            btnFollow.isHidden = false
+            if FollowManager.shared.following.contains(where: { $0.userId == user.id }) {
+                setButtonTitle(title: "FOLLOWING")
+            } else {
+                setButtonTitle(title: "FOLLOW")
+            }
+        } else {
+            btnFollow.isHidden = true
+        }
+        
+        //Deniz (star kod, so upotreba na array za following):
+//        guard let localUser = DataStore.shared.localUser, let userId = user.id, let followedUsers = localUser.followingUsersID else {return}
+//        if followedUsers.contains(userId) {
+//            btnFollow.isSelected = true
+//            btnFollow.backgroundColor = UIColor(named: "MainPink")?.withAlphaComponent(0.2)
+//        } else {
+//            btnFollow.isSelected = false
+//            btnFollow.backgroundColor = UIColor(named: "MainPink")
+//        }
+//        guard let myID = user.id, let user = DataStore.shared.localUser?.id else {return}
+//        if myID == user {
+//                self.btnFollow.isHidden = true
+//        }
+    }
+    func setButtonTitle(title: String) {
+        btnFollow.setTitle(title, for: .normal)
+        if title == "FOLLOW" {
+            btnFollow.backgroundColor = UIColor(named: "MainPink")
+            btnFollow.setTitleColor(UIColor.white, for: .normal)
+        } else {
+            btnFollow.backgroundColor = UIColor(named: "MainPink")?.withAlphaComponent(0.2)
+            btnFollow.setTitleColor(UIColor(hex: "FF6265"), for: .normal)
         }
     }
-    
     @IBAction func onEditImage(_ sender: UIButton) {
         if let user = user, user.id == DataStore.shared.localUser?.id {
         delegate?.didClickOnEditImage()
@@ -62,12 +96,22 @@ class BasicInfoTableViewCell: UITableViewCell {
     
     @IBAction func onFollow(_ sender: UIButton) {
         guard let user = user else { return }
-        if btnFollow.isSelected {
-            delegate?.didFollowUsers(user: user, isFollowed: false)
-            btnFollow.isSelected = false
-        } else {
-            delegate?.didFollowUsers(user: user, isFollowed: true)
-            btnFollow.isSelected = true
+        DataStore.shared.followUser(user: user) { (success, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if success {
+                FollowManager.shared.getFollowing()
+                self.setButtonTitle(title: "FOLLOWING")
+            }
         }
+//        if self.btnFollow.isSelected {
+//            self.delegate?.didFollowUsers(user: user, isFollowed: false)
+//            self.btnFollow.isSelected = false
+//        } else {
+//            self.delegate?.didFollowUsers(user: user, isFollowed: true)
+//            self.btnFollow.isSelected = true
+//        }
     }
 }

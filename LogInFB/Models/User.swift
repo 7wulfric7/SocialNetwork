@@ -28,6 +28,31 @@ struct User: Codable {
     init(id: String) {
         self.id = id
     }
+    
+    mutating func blockUserWithId(id: String) {
+        guard let blockedUsers = blockedUsersID else {
+            blockedUsersID = [id]
+            return
+        }
+        if blockedUsers.contains(id) {
+            return
+        }
+        blockedUsersID!.append(id)
+    }
+    
+    func isBlockedUserWith(id: String) -> Bool {
+        guard let blockedUsers = blockedUsersID else {return false}
+        return blockedUsers.contains(id)
+    }
+    
+   mutating func unBlockUserWith(id: String) {
+        guard let blockedUsers = blockedUsersID else {return}
+    if !blockedUsers.contains(id) {
+        return
+    }
+    blockedUsersID!.removeAll(where: {$0 == id})
+    }
+    
     func save(completion: UserSaveCompletion?) {
 //        DataStore.shared.localUser = self
         DataStore.shared.setUserData(user: self) { (success, error) in

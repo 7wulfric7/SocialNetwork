@@ -60,11 +60,34 @@
                             <action selector="btnBlock:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pGZ-2A-xZ4"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EK-1Q-aJv">
+                        <rect key="frame" x="279" y="9" width="80" height="30"/>
+                        <color key="backgroundColor" name="MainPink"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="t0n-F4-DDG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <state key="normal" title="FOLLOW"/>
+                        <state key="selected" title="UNFOLLOW">
+                            <color key="titleColor" name="MainPink"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="btnBlock:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="r5a-N5-WYy"/>
+                            <action selector="onFollow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JG4-KP-3mx"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xoa-6h-adw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="8U4-NQ-HWn"/>
+                    <constraint firstItem="3EK-1Q-aJv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9R1-s1-dBn"/>
                     <constraint firstItem="Xoa-6h-adw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="C6t-ui-evc"/>
                     <constraint firstAttribute="trailing" secondItem="xBH-jE-E8d" secondAttribute="trailing" constant="16" id="CuH-wx-nJg"/>
+                    <constraint firstAttribute="trailing" secondItem="3EK-1Q-aJv" secondAttribute="trailing" constant="16" id="bp6-uj-sV5"/>
                     <constraint firstItem="xBH-jE-E8d" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eRa-bq-c1W"/>
                     <constraint firstItem="hZv-28-NLc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iSC-eY-uPp"/>
                     <constraint firstItem="hZv-28-NLc" firstAttribute="leading" secondItem="Xoa-6h-adw" secondAttribute="trailing" constant="8" id="rlH-Zu-7Gp"/>
@@ -74,6 +97,7 @@
             <connections>
                 <outlet property="btnBlock" destination="xBH-jE-E8d" id="9mx-LM-d8f"/>
                 <outlet property="lblName" destination="hZv-28-NLc" id="jAT-a1-oCX"/>
+                <outlet property="onFollow" destination="3EK-1Q-aJv" id="aXc-QP-cXn"/>
                 <outlet property="userImage" destination="Xoa-6h-adw" id="9bj-Ox-0uL"/>
             </connections>
             <point key="canvasLocation" x="-22.463768115942031" y="101.78571428571428"/>

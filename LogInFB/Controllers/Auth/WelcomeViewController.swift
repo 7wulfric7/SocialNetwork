@@ -174,7 +174,6 @@ class WelcomeViewController: UIViewController {
     }
 }
 
-
 extension WelcomeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

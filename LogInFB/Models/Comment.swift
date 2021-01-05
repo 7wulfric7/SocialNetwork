@@ -13,5 +13,4 @@ struct Comment: Codable {
     var momentId: String?
     var createdAt: TimeInterval?
     var body: String?
-    
 }

@@ -83,7 +83,7 @@ class FeedDetailViewController: UIViewController {
     var feed: Feed?
     
     private var hasNextPage = true
-    private var pageSize = 5
+    private var pageSize = 4
     private var lastCommentDocument: DocumentSnapshot?
     
     override var canBecomeFirstResponder: Bool {
@@ -136,7 +136,10 @@ class FeedDetailViewController: UIViewController {
     private func setupInputBar() {
         inputBar.delegate = self
         inputBar.inputTextView.placeholder = "Write a comment"
-        
+        inputBar.layer.shadowColor = UIColor(red: 0.192, green: 0.192, blue: 0.192, alpha: 1.0).cgColor
+        inputBar.layer.shadowOpacity = 0.2
+        inputBar.layer.shadowOffset = CGSize(width: 0.0, height: -3.0)
+        inputBar.separatorLine.height = 0
     }
     private func setupSharedButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -288,6 +291,7 @@ extension FeedDetailViewController: UITableViewDataSource, UITableViewDelegate {
             
         case .feedDetailLikeShare:
             let cell = tableView.dequeueReusableCell(withIdentifier: "feedDetailLikeShareCell") as! FeedDetailLikeShareTableViewCell
+            cell.setupCell(feedItem: moment)
             cell.lblLikeCount.text = "\(moment.likeCount ?? 0)"
             cell.lblShareCount.text = "\(moment.shareCount ?? 0)"
             cell.selectionStyle = .none
@@ -298,7 +302,6 @@ extension FeedDetailViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "feedDetailsCommentsCell") as! FeedDetailCommentsTableViewCell
             let comment = comments[indexPath.row]
             cell.setComents(comment: comment)
-            
             cell.selectionStyle = .none
             return cell
             

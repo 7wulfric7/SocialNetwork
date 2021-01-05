@@ -8,22 +8,41 @@
 import UIKit
 import SVProgressHUD
 
+
+enum SearchState {
+    case users
+    case following
+    case followers
+}
 class SearchUsersViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var state: SearchState = .users
+    
     private var users = [User]()
     private var filteredUsers = [User]()
     var refreshControl = UIRefreshControl()
+    var follow = [Follow]()
+    var filterFollow = [Follow]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Search Users"
-        searchBar.delegate = self
-        fetchUsers()
         setupTableView()
+        
+        switch state {
+        case .users:
+            title = "Search Users"
+            fetchUsers()
+        case .following:
+            title = "Following Users"
+        case .followers:
+            title = "Followers Users"
+        }
+        
+        searchBar.delegate = self
     }
     
     private func setupTableView() {
@@ -60,6 +79,7 @@ class SearchUsersViewController: UIViewController {
             }
         }
     }
+    
     private func openProfileFor(user: User) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
@@ -70,17 +90,32 @@ class SearchUsersViewController: UIViewController {
 }
 extension SearchUsersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection sections: Int) -> Int {
-        return users.count
+        if state == .users {
+            return users.count
+        }
+        return follow.count
+        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
-        let user = users[indexPath.row]
-        cell.blockingDelegate = self
-        cell.setData(user: user)
+        if state == .users {
+            let user = users[indexPath.row]
+
+            cell.blockingDelegate = self
+            cell.setData(user: user)
+            
+        } else {
+            let follow = self.follow[indexPath.row]
+            cell.setData(uid: follow.userId)
+        }
+        cell.btnBlock.isHidden = state != .users
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if state != .users {
+            return
+        }
         let user = users[indexPath.row]
         openProfileFor(user: user)
     }
@@ -88,14 +123,19 @@ extension SearchUsersViewController: UITableViewDataSource, UITableViewDelegate 
 extension SearchUsersViewController: BlockUsersCellDelegate {
     func didBlockUser(user: User, isBlock: Bool) {
         guard var localUser = DataStore.shared.localUser, let userId = user.id else {return}
-        if localUser.blockedUsersID == nil {
-            localUser.blockedUsersID = [String]()
-        }
         if isBlock {
-            localUser.blockedUsersID?.append(userId)
+            localUser.blockUserWithId(id: userId)
         } else {
-            localUser.blockedUsersID?.removeAll(where: {$0 == user.id})
+            localUser.unBlockUserWith(id: userId)
         }
+//        if localUser.blockedUsersID == nil {
+//            localUser.blockedUsersID = [String]()
+//        }
+//        if isBlock {
+//            localUser.blockedUsersID?.append(userId)
+//        } else {
+//            localUser.blockedUsersID?.removeAll(where: {$0 == user.id})
+//        }
         localUser.save { (_, _) in
             self.tableView.reloadData()
             NotificationCenter.default.post(name: Notification.Name("ReloadFeedAfterUserAction"), object: nil)
@@ -108,14 +148,17 @@ extension SearchUsersViewController: UISearchBarDelegate {
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
+           
             fetchUsers()
             filteredUsers.removeAll()
             filteredUsers.append(contentsOf: users)
+            
             tableView.reloadData()
             return
         }
         let text = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         users = users.filter({ ($0.fullName!.lowercased().hasPrefix(text.lowercased())) })
+       
         tableView.reloadData()
     }
 }

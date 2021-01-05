@@ -46,6 +46,8 @@ class FeedDetailTableViewCell: UITableViewCell {
             self.lblUserName.text = user.fullName
             if let imageUrl = user.imageUrl {
             self.userImage.kf.setImage(with: URL(string: imageUrl))
+            } else {
+                self.userImage.image = UIImage(named: "userPlaceholder")
             }
         }
     }
