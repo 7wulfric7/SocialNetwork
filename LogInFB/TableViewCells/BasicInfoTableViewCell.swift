@@ -54,7 +54,7 @@ class BasicInfoTableViewCell: UITableViewCell {
         if user.id != localUser.id {
             btnFollow.isHidden = false
             if FollowManager.shared.following.contains(where: { $0.userId == user.id }) {
-                setButtonTitle(title: "FOLLOWING")
+                setButtonTitle(title: "UNFOLLOW")
             } else {
                 setButtonTitle(title: "FOLLOW")
             }
@@ -96,16 +96,13 @@ class BasicInfoTableViewCell: UITableViewCell {
     
     @IBAction func onFollow(_ sender: UIButton) {
         guard let user = user else { return }
-        DataStore.shared.followUser(user: user) { (success, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            if success {
-                FollowManager.shared.getFollowing()
-                self.setButtonTitle(title: "FOLLOWING")
-            }
+        
+        if FollowManager.shared.following.contains(where: {$0.userId == user.id}) {
+            //Already following this user
+            unfollowUser(user)
+            return
         }
+       followUser(user)
 //        if self.btnFollow.isSelected {
 //            self.delegate?.didFollowUsers(user: user, isFollowed: false)
 //            self.btnFollow.isSelected = false
@@ -113,5 +110,29 @@ class BasicInfoTableViewCell: UITableViewCell {
 //            self.delegate?.didFollowUsers(user: user, isFollowed: true)
 //            self.btnFollow.isSelected = true
 //        }
+    }
+    
+    func followUser(_ user: User) {
+        FollowManager.shared.followUser(user: user) { (success, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if success {
+                self.setButtonTitle(title: "UNFOLLOW")
+            }
+        }
+    }
+    
+    func unfollowUser(_ user: User) {
+        FollowManager.shared.unfollowUser(user) { (success, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if success {
+                self.setButtonTitle(title: "FOLLOW")
+            }
+        }
     }
 }

@@ -126,7 +126,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             }
             if let url = url {
                 moment.imageUrl = url.absoluteString
-                DataStore.shared.createFeedItem(item: moment) { (feer, error) in
+                DataStore.shared.createFeedItem(item: moment) { (feed, error) in
                     if let error = error {
                         self.showErrorWith(title: "Error", msg: error.localizedDescription)
                         return

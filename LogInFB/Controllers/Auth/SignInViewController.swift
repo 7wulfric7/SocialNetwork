@@ -8,7 +8,8 @@
 import UIKit
 import Firebase
 import SVProgressHUD
-
+import CoreServices
+import SwiftPhotoGallery
 
 class SignInViewController: UIViewController {
     

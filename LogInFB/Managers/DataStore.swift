@@ -67,29 +67,42 @@ class DataStore {
         }
     }
 }
-    func followUser(user: User, completion: @escaping(_ success: Bool,_ error: Error?) -> Void) {
+    
+    func unfollow(followingId: String, completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+        guard let localUser = localUser, let localUserId = localUser.id else {return}
+        let followingRef = database.collection("users").document(localUserId).collection("following").document(followingId)
+        followingRef.delete { (error) in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+            completion(true, nil)
+        }
+    }
+    
+    func followUser(user: User, completion: @escaping(_ following: Follow?,_ error: Error?) -> Void) {
         guard let localUser = localUser,
               let localUserId = localUser.id,
               let followUserId = user.id else {
-            completion(false, nil)
+            completion(nil, nil)
             return
         }
         let followingRef = database.collection("users").document(localUserId).collection("following").document()
-        var following = Following()
+        var following = Follow()
         following.userId = followUserId
         following.id = followingRef.documentID
         following.createdAt = Date().toMiliseconds()
         do {
            try followingRef.setData(from: following) { (error) in
                 if let error = error {
-                   completion(false, error)
+                   completion(nil, error)
                     return
                 }
-            completion(true, nil)
+            completion(following, nil)
             }
         } catch {
             print(error.localizedDescription)
-            completion(false, error)
+            completion(nil, error)
         }
     }
     
