@@ -11,6 +11,7 @@ import FirebaseFirestore
 protocol BasicinfoCellDelegate: class {
     func didClickOnEditImage()
     func didTapOnUserImage(user: User?, image: UIImage?)
+    func reloadFollowCount()
 //    func didFollowUsers(user: User?, isFollowed: Bool)
 }
 
@@ -85,6 +86,10 @@ class BasicInfoTableViewCell: UITableViewCell {
             btnFollow.backgroundColor = UIColor(named: "MainPink")?.withAlphaComponent(0.2)
             btnFollow.setTitleColor(UIColor(hex: "FF6265"), for: .normal)
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { 
+            self.delegate?.reloadFollowCount()
+        }
+        
     }
     @IBAction func onEditImage(_ sender: UIButton) {
         if let user = user, user.id == DataStore.shared.localUser?.id {

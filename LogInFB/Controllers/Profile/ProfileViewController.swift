@@ -11,7 +11,7 @@ import CoreServices
 import SwiftPhotoGallery
 import SVProgressHUD
 
-enum ProfileViewTableData {
+enum ProfileViewTableData: Equatable {
     case basicInfo
     case aboutMe
     case stats
@@ -39,6 +39,21 @@ enum ProfileViewTableData {
             return 95
         case .myMoments:
             return 95
+        }
+    }
+    
+    static func == (lhs: ProfileViewTableData, rhs: ProfileViewTableData) -> Bool {
+        switch (lhs, rhs) {
+        case (.basicInfo, .basicInfo):
+            return true
+        case (.aboutMe, .aboutMe):
+            return true
+        case (.stats, .stats):
+            return true
+        case (.myMoments, .myMoments):
+            return true
+        default:
+            return false
         }
     }
 }
@@ -144,6 +159,17 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: BasicinfoCellDelegate {
+    func reloadFollowCount() {
+//        if let indec = tableData.firstIndex(where: { $0 == .stats }) {
+//
+//        }
+        //because we have Equitable we can fetch index of object instead of comparing
+        if let index = tableData.firstIndex(of: .stats) {
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+        }
+        
+    }
+    
 //    func didFollowUsers(user: User?, isFollowed: Bool) {
 //        guard var localUser = DataStore.shared.localUser, let userId = user?.id else {return}
 //        if localUser.followingUsersID == nil {
